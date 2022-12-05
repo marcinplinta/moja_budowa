@@ -19,7 +19,7 @@ class RegistPage extends StatelessWidget {
                 padding: EdgeInsets.all(8.0),
                 child: Image(
                   image: AssetImage('images/domek.jpg'),
-                  width: 300,
+                  width: 200,
                 ),
               ),
               SizedBox(height: 30),
