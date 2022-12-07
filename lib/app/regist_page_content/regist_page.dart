@@ -33,12 +33,11 @@ class RegistPage extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.all(20.0),
                 child: TextField(
+                  obscureText: true,
                   decoration: InputDecoration(hintText: 'hasło'),
                 ),
               ),
-              SizedBox(
-                height: 20,
-              ),
+              SizedBox(height: 20),
             ],
           )),
         ));
