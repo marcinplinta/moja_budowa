@@ -37,6 +37,13 @@ class RegistPage extends StatelessWidget {
                   decoration: InputDecoration(hintText: 'hasło'),
                 ),
               ),
+              Padding(
+                padding: EdgeInsets.all(20.0),
+                child: TextField(
+                  obscureText: true,
+                  decoration: InputDecoration(hintText: 'potwierdź hasło'),
+                ),
+              ),
               SizedBox(height: 20),
             ],
           )),

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:moja_budowa/app/home_page_content/home_page.dart';
-import 'package:moja_budowa/app/login_page_content/login_page.dart';
-import 'package:moja_budowa/app/regist_page_content/regist_page.dart';
+import 'package:moja_budowa/app/home/home_page.dart';
+import 'package:moja_budowa/app/login/login_page.dart';
+import 'package:moja_budowa/app/regist/regist_page.dart';
 
 class StartPage extends StatelessWidget {
   const StartPage({
@@ -35,7 +35,7 @@ class StartPage extends StatelessWidget {
               ElevatedButton(
                 child: const Text('Zaczynamy'),
                 onPressed: () {
-                  Navigator.of(context).push(
+                  Navigator.of(context).pushReplacement(
                     MaterialPageRoute(
                       builder: (_) => const HomePage(),
                     ),
