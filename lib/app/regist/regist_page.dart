@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:moja_budowa/app/start/start_page.dart';
 
 class RegistPage extends StatelessWidget {
   const RegistPage({
@@ -14,37 +15,47 @@ class RegistPage extends StatelessWidget {
         backgroundColor: const Color.fromARGB(235, 213, 228, 241),
         body: Center(
           child: (Column(
-            children: const [
-              Padding(
+            children: [
+              const Padding(
                 padding: EdgeInsets.all(8.0),
                 child: Image(
                   image: AssetImage('images/domek.jpg'),
                   width: 200,
                 ),
               ),
-              SizedBox(height: 30),
-              Text('Zarejestruj się'),
-              Padding(
+              const SizedBox(height: 30),
+              const Text('Zarejestruj się'),
+              const Padding(
                 padding: EdgeInsets.all(20.0),
                 child: TextField(
                   decoration: InputDecoration(hintText: 'e-mail'),
                 ),
               ),
-              Padding(
+              const Padding(
                 padding: EdgeInsets.all(20.0),
                 child: TextField(
                   obscureText: true,
                   decoration: InputDecoration(hintText: 'hasło'),
                 ),
               ),
-              Padding(
+              const Padding(
                 padding: EdgeInsets.all(20.0),
                 child: TextField(
                   obscureText: true,
                   decoration: InputDecoration(hintText: 'potwierdź hasło'),
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
+              ElevatedButton(
+                child: const Text('Utwórz konto'),
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (_) => const StartPage(),
+                    ),
+                  );
+                },
+              ),
             ],
           )),
         ));
