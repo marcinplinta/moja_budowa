@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:moja_budowa/app/callendary/callendary_page.dart';
+import 'package:moja_budowa/app/list_to_do/list_to_do_page.dart';
 import 'package:moja_budowa/app/cost/cost_page.dart';
 import 'package:moja_budowa/app/foto/foto_page.dart';
 
@@ -58,17 +58,17 @@ class _HomePageState extends State<HomePage> {
                 },
               ),
               ElevatedButton(
-                child: const Text('Wydarzenia'),
+                child: const Text('Lista do Zrobienia'),
                 onPressed: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: (_) => const CallendaryPage(),
+                      builder: (_) => const ListToDoPage(),
                     ),
                   );
                 },
               ),
               ElevatedButton(
-                child: const Text('Lista do Zrobienia'),
+                child: const Text('Wydarzenia'),
                 onPressed: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(
@@ -106,7 +106,7 @@ class _HomePageState extends State<HomePage> {
                 child: const Text('Umowy'),
               ),
               const SizedBox(
-                height: 30,
+                height: 10,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
@@ -131,15 +131,15 @@ class _HomePageState extends State<HomePage> {
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.note),
-            label: "Planer",
+            label: "lista do zrobienia",
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
-            label: "Home",
+            label: "start",
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.money),
-            label: "Koszty",
+            label: "koszty",
           ),
         ],
       ),

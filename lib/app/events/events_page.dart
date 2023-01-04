@@ -9,7 +9,7 @@ class EventsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Notatnik'),
+        title: const Text('Wydarzenia'),
       ),
       backgroundColor: const Color.fromARGB(235, 213, 228, 241),
     );
