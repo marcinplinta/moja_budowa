@@ -7,13 +7,7 @@ class CostPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Koszty Budowy'),
-      ),
-      backgroundColor: const Color.fromARGB(235, 213, 228, 241),
-      body: const CostView(),
-    );
+    return const CostView();
   }
 }
 
@@ -24,6 +18,12 @@ class CostView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(child: Text('Koszty'));
+    return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        child: const Icon(Icons.add),
+      ),
+      backgroundColor: const Color.fromARGB(235, 213, 228, 241),
+    );
   }
 }
