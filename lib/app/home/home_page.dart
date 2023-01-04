@@ -28,7 +28,7 @@ class _HomePageState extends State<HomePage> {
       backgroundColor: const Color.fromARGB(235, 213, 228, 241),
       body: Builder(builder: (context) {
         if (currentIndex == 0) {
-          return const PlanView();
+          return const ListToDoView();
         }
         if (currentIndex == 2) {
           return const CostView();
