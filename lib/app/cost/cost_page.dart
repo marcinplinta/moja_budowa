@@ -58,10 +58,11 @@ class ListCostWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(15),
-      margin: const EdgeInsets.all(5),
-      color: Colors.red,
-      child: Text(title),
-    );
+        padding: const EdgeInsets.all(15),
+        margin: const EdgeInsets.all(5),
+        color: Colors.cyan,
+        child: Text(
+          title,
+        ));
   }
 }
