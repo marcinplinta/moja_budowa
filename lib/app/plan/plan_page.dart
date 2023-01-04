@@ -12,18 +12,22 @@ class PlanPage extends StatelessWidget {
         title: const Text('Planer Budowy'),
       ),
       backgroundColor: const Color.fromARGB(235, 213, 228, 241),
-      body: const PlanView(),
+      body: ListView(
+        children: [
+          Container(
+            padding: const EdgeInsets.all(15),
+            margin: const EdgeInsets.all(5),
+            color: Colors.amber,
+            child: const Text('1. Przygotowanie dokumentacji'),
+          ),
+          Container(
+            padding: const EdgeInsets.all(15),
+            margin: const EdgeInsets.all(5),
+            color: Colors.amber,
+            child: const Text('2. Prace Ziemne'),
+          ),
+        ],
+      ),
     );
-  }
-}
-
-class PlanView extends StatelessWidget {
-  const PlanView({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return const Center(child: Text('Planer'));
   }
 }
