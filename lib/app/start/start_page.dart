@@ -34,7 +34,7 @@ class StartPage extends StatelessWidget {
                   child: Text('szybki start'),
                 ),
                 ElevatedButton(
-                  child: const Text('Zaczynamy'),
+                  child: const Text('Kontynuuj jako gość'),
                   onPressed: () {
                     Navigator.of(context).pushReplacement(
                       MaterialPageRoute(
@@ -57,7 +57,7 @@ class StartPage extends StatelessWidget {
                 ),
                 const SizedBox(height: 10),
                 ElevatedButton(
-                  child: const Text('Zaloguj Się'),
+                  child: const Text('Zaloguj się'),
                   onPressed: () {
                     Navigator.of(context).push(
                       MaterialPageRoute(

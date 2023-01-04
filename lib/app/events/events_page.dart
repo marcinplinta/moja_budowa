@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class NotebookPage extends StatelessWidget {
-  const NotebookPage({
+class EventsPage extends StatelessWidget {
+  const EventsPage({
     Key? key,
   }) : super(key: key);
 

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:moja_budowa/app/callendary/callendary_page.dart';
 import 'package:moja_budowa/app/cost/cost_page.dart';
 import 'package:moja_budowa/app/foto/foto_page.dart';
 
-import 'package:moja_budowa/app/notebook/notebook_page.dart';
+import 'package:moja_budowa/app/events/events_page.dart';
 import 'package:moja_budowa/app/plan/plan_page.dart';
 
 class HomePage extends StatefulWidget {
@@ -33,61 +34,92 @@ class _HomePageState extends State<HomePage> {
           return const CostView();
         }
 
-        return (ListView(
-          children: [
-            const SizedBox(height: 10),
-            ElevatedButton(
-              child: const Text('Koszty Budowy'),
-              onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (_) => const CostPage(),
-                  ),
-                );
-              },
-            ),
-            ElevatedButton(
-              child: const Text('Kalendarz'),
-              onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (_) => const CallendaryPage(),
-                  ),
-                );
-              },
-            ),
-            ElevatedButton(
-              child: const Text('Notatnik'),
-              onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (_) => const NotebookPage(),
-                  ),
-                );
-              },
-            ),
-            ElevatedButton(
-              child: const Text('Planer Budowy'),
-              onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (_) => const PlanPage(),
-                  ),
-                );
-              },
-            ),
-            ElevatedButton(
-              child: const Text('Zdjęcia/Faktury/Załączniki/Umowy'),
-              onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (_) => const FotoPage(),
-                  ),
-                );
-              },
-            ),
-          ],
-        ));
+        return Padding(
+          padding: const EdgeInsets.all(12.0),
+          child: (ListView(
+            children: [
+              Container(
+                color: Colors.white,
+                padding: const EdgeInsets.all(70),
+                margin: const EdgeInsets.all(10),
+                child: Center(
+                    child: Text(
+                        style: GoogleFonts.kanit(fontSize: 20),
+                        'dodaj zdjęcie domu')),
+              ),
+              ElevatedButton(
+                child: const Text('Koszty Budowy'),
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (_) => const CostPage(),
+                    ),
+                  );
+                },
+              ),
+              ElevatedButton(
+                child: const Text('Wydarzenia'),
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (_) => const CallendaryPage(),
+                    ),
+                  );
+                },
+              ),
+              ElevatedButton(
+                child: const Text('Lista do Zrobienia'),
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (_) => const EventsPage(),
+                    ),
+                  );
+                },
+              ),
+              ElevatedButton(
+                child: const Text('Planer Budowy'),
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (_) => const PlanPage(),
+                    ),
+                  );
+                },
+              ),
+              ElevatedButton(
+                child: const Text('Zdjęcia'),
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (_) => const FotoPage(),
+                    ),
+                  );
+                },
+              ),
+              ElevatedButton(
+                onPressed: () {},
+                child: const Text('Faktury'),
+              ),
+              ElevatedButton(
+                onPressed: () {},
+                child: const Text('Umowy'),
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Text(
+                      style: GoogleFonts.poppins(
+                          fontSize: 20, fontWeight: FontWeight.bold),
+                      'suma kosztów'),
+                ],
+              )
+            ],
+          )),
+        );
       }),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: currentIndex,
