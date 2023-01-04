@@ -45,7 +45,7 @@ class ListPlanWidget extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(15),
       margin: const EdgeInsets.all(5),
-      color: Colors.amber,
+      color: Colors.blue,
       child: Text(title),
     );
   }
