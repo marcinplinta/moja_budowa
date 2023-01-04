@@ -19,12 +19,14 @@ class CostView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('Koszty Budowy'),
+      ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
         child: const Icon(Icons.add),
       ),
       backgroundColor: const Color.fromARGB(235, 213, 228, 241),
-      child: Text('dsa'),
       body: ListView(
         children: const [
           ListCostWidget('1. Przygotowanie dokumentacji'),

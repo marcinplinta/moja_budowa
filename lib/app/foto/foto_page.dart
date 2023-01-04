@@ -9,7 +9,7 @@ class FotoPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Załączniki/Zdjęcia'),
+        title: const Text('Zdjęcia'),
       ),
       backgroundColor: const Color.fromARGB(235, 213, 228, 241),
     );
