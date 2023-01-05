@@ -26,10 +26,13 @@ class AddTask extends StatelessWidget {
               height: 10,
             ),
             TextField(
-                decoration: InputDecoration(
-              border: OutlineInputBorder(),
-              labelText: 'dodaj czynność',
-            )),
+              minLines: 1,
+              maxLines: 4,
+              decoration: InputDecoration(
+                border: OutlineInputBorder(),
+                labelText: 'dodaj czynność',
+              ),
+            ),
           ],
         ),
       ),
