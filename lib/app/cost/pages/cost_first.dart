@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:moja_budowa/app/cost/pages/add_first.dart';
 
 class CostFirst extends StatelessWidget {
   const CostFirst({
@@ -9,7 +10,18 @@ class CostFirst extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Plan i sposób przygotowania się'),
+        title: const Text('Koszty dokumentacji'),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) => const AddFirst(),
+              fullscreenDialog: true,
+            ),
+          );
+        },
+        child: const Icon(Icons.edit),
       ),
       backgroundColor: const Color.fromARGB(235, 213, 228, 241),
       body: Padding(
