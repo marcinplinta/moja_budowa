@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:moja_budowa/app/cost/pages/cost_first.dart';
 
 class CostPage extends StatelessWidget {
   const CostPage({
@@ -60,12 +61,21 @@ class ListCostWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(15),
-      margin: const EdgeInsets.all(5),
-      color: Colors.cyan,
-      child: Text(
-        title,
+    return InkWell(
+      onTap: () {
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: ((context) => const CostFirst()),
+          ),
+        );
+      },
+      child: Container(
+        padding: const EdgeInsets.all(15),
+        margin: const EdgeInsets.all(5),
+        color: Colors.cyan,
+        child: Text(
+          title,
+        ),
       ),
     );
   }
