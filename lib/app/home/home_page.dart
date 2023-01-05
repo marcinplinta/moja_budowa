@@ -5,7 +5,7 @@ import 'package:moja_budowa/app/cost/cost_page.dart';
 import 'package:moja_budowa/app/foto/foto_page.dart';
 
 import 'package:moja_budowa/app/events/events_page.dart';
-import 'package:moja_budowa/app/plan/plan_page.dart';
+import 'package:moja_budowa/app/plan/plan_page/plan_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({
@@ -30,6 +30,7 @@ class _HomePageState extends State<HomePage> {
         if (currentIndex == 0) {
           return const ListToDoView();
         }
+
         if (currentIndex == 2) {
           return const CostView();
         }
