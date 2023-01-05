@@ -7,7 +7,12 @@ class ListToDoPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const ListToDoView();
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Lista do Zrobienia'),
+      ),
+      body: const ListToDoView(),
+    );
   }
 }
 
@@ -19,9 +24,6 @@ class ListToDoView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Lista do Zrobienia'),
-      ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
         child: const Icon(Icons.edit),
