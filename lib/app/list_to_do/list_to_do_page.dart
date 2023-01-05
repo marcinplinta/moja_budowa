@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:moja_budowa/app/list_to_do/add/add_task.dart';
 
 class ListToDoPage extends StatelessWidget {
   const ListToDoPage({
@@ -25,22 +26,17 @@ class ListToDoView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) => const AddTask(),
+              fullscreenDialog: true,
+            ),
+          );
+        },
         child: const Icon(Icons.edit),
       ),
       backgroundColor: const Color.fromARGB(235, 213, 228, 241),
-      body: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: Column(
-          children: const [
-            TextField(
-                decoration: InputDecoration(
-              border: OutlineInputBorder(),
-              labelText: 'dodaj czynność',
-            )),
-          ],
-        ),
-      ),
     );
   }
 }

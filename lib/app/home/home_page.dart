@@ -24,6 +24,12 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Moja Budowa'),
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.person),
+          ),
+        ],
       ),
       backgroundColor: const Color.fromARGB(235, 213, 228, 241),
       body: Builder(builder: (context) {
