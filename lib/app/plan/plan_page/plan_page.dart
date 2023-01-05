@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:moja_budowa/app/plan/details_plan/details_first.dart';
 
 class PlanPage extends StatelessWidget {
   const PlanPage({
@@ -42,11 +43,20 @@ class ListPlanWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(15),
-      margin: const EdgeInsets.all(5),
-      color: Colors.blue,
-      child: Text(title),
+    return InkWell(
+      onTap: () {
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: ((context) => const DetailsFirst()),
+          ),
+        );
+      },
+      child: Container(
+        padding: const EdgeInsets.all(15),
+        margin: const EdgeInsets.all(5),
+        color: Colors.blue,
+        child: Text(title),
+      ),
     );
   }
 }
