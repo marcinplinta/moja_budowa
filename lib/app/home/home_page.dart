@@ -49,7 +49,7 @@ class _HomePageState extends State<HomePage> {
             children: [
               Container(
                 color: Colors.white,
-                padding: const EdgeInsets.all(70),
+                padding: const EdgeInsets.all(60),
                 margin: const EdgeInsets.all(10),
                 child: Center(
                     child: Text(
@@ -136,6 +136,15 @@ class _HomePageState extends State<HomePage> {
                       style: GoogleFonts.poppins(
                           fontSize: 20, fontWeight: FontWeight.bold),
                       'suma kosztów'),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Text(
+                      style: GoogleFonts.poppins(
+                          fontSize: 20, fontWeight: FontWeight.bold),
+                      '0 zł'),
                 ],
               )
             ],
