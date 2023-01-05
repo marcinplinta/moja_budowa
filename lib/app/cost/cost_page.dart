@@ -41,6 +41,7 @@ class CostView extends StatelessWidget {
           ListCostWidget('10. Instalacja hydrauliczne'),
           ListCostWidget('11. Instalacja wentylacyjna'),
           ListCostWidget('12. Wykończenia'),
+          ListCostWidget('13. Inne'),
         ],
       ),
     );
