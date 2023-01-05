@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:moja_budowa/app/contract/contract_page.dart';
+import 'package:moja_budowa/app/invoice/invoice_page.dart';
 import 'package:moja_budowa/app/list_to_do/list_to_do_page.dart';
 import 'package:moja_budowa/app/cost/cost_page.dart';
 import 'package:moja_budowa/app/foto/foto_page.dart';
@@ -105,11 +107,23 @@ class _HomePageState extends State<HomePage> {
                 },
               ),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (_) => const InvoicePage(),
+                    ),
+                  );
+                },
                 child: const Text('Faktury'),
               ),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (_) => const ContractPage(),
+                    ),
+                  );
+                },
                 child: const Text('Umowy'),
               ),
               const SizedBox(
