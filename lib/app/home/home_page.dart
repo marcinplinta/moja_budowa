@@ -160,7 +160,7 @@ class _HomePageState extends State<HomePage> {
         },
         items: const [
           BottomNavigationBarItem(
-            icon: Icon(Icons.note),
+            icon: Icon(Icons.event_note),
             label: "lista do zrobienia",
           ),
           BottomNavigationBarItem(
