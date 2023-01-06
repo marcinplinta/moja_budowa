@@ -40,6 +40,7 @@ dependencies:
   firebase_core: ^2.3.0
   firebase_auth: ^4.1.5
   device_preview: ^1.1.0
+  cloud_firestore: ^4.3.1
   
 
 dev_dependencies:
