@@ -29,9 +29,9 @@ class AddTask extends StatelessWidget {
               minLines: 1,
               maxLines: 4,
               decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: 'dodaj czynność',
-              ),
+                  border: OutlineInputBorder(),
+                  labelText: 'dodaj czynność',
+                  hintText: 'kupić klej'),
             ),
           ],
         ),

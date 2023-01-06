@@ -12,29 +12,35 @@ class StartPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(),
-        backgroundColor: const Color.fromARGB(235, 213, 228, 241),
-        body: SafeArea(
+      body: Container(
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('images/domek.jpg'),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: SafeArea(
           child: Center(
             child: (Column(
               children: [
-                const SizedBox(height: 50),
+                const SizedBox(height: 30),
                 Text(
                   'Moja Budowa',
                   style: GoogleFonts.kanit(fontSize: 40),
                 ),
-                const SizedBox(height: 50),
-                const Image(
-                  image: AssetImage('images/domek.jpg'),
-                  width: 300,
-                ),
                 const SizedBox(height: 30),
-                const Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Text('szybki start'),
-                ),
                 ElevatedButton(
-                  child: const Text('Kontynuuj jako gość'),
+                  style: ElevatedButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(16),
+                    ),
+                    fixedSize: const Size(200, 50),
+                    backgroundColor: const Color.fromARGB(255, 162, 222, 240),
+                  ),
+                  child: Text(
+                    "Kontynuuj jako gość",
+                    style: GoogleFonts.kanit(color: Colors.black, fontSize: 18),
+                  ),
                   onPressed: () {
                     Navigator.of(context).pushReplacement(
                       MaterialPageRoute(
@@ -43,21 +49,19 @@ class StartPage extends StatelessWidget {
                     );
                   },
                 ),
-                const SizedBox(height: 10),
-                TextButton(
-                  child:
-                      const Text('lub utwórz konto i przechowuj dane na stałe'),
-                  onPressed: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (_) => const RegistPage(),
-                      ),
-                    );
-                  },
-                ),
-                const SizedBox(height: 10),
+                const SizedBox(height: 250),
                 ElevatedButton(
-                  child: const Text('Zaloguj się'),
+                  style: ElevatedButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(16),
+                    ),
+                    fixedSize: const Size(180, 40),
+                    backgroundColor: const Color.fromARGB(255, 162, 222, 240),
+                  ),
+                  child: Text(
+                    "Zaloguj się",
+                    style: GoogleFonts.kanit(color: Colors.black, fontSize: 26),
+                  ),
                   onPressed: () {
                     Navigator.of(context).push(
                       MaterialPageRoute(
@@ -66,9 +70,28 @@ class StartPage extends StatelessWidget {
                     );
                   },
                 ),
+                TextButton(
+                  style: TextButton.styleFrom(
+                    foregroundColor: const Color.fromARGB(223, 14, 13, 13),
+                  ),
+                  child: const Text(
+                    'Nie masz konta? Zarejestruj się',
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                  ),
+                  onPressed: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (_) => const RegistPage(),
+                      ),
+                    );
+                  },
+                ),
+                const SizedBox(height: 120),
               ],
             )),
           ),
-        ));
+        ),
+      ),
+    );
   }
 }
