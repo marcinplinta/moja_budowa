@@ -22,7 +22,7 @@ class LoginPage extends StatelessWidget {
             children: [
               const Image(
                 image: AssetImage('images/domek.jpg'),
-                width: 200,
+                width: 30,
               ),
               const SizedBox(height: 30),
               Text(
