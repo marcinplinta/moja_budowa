@@ -97,6 +97,11 @@ class _LoginPageState extends State<LoginPage> {
                               color: Colors.black, fontSize: 26),
                         ),
                         onPressed: () async {
+                          // Navigator.of(context).push(
+                          //   MaterialPageRoute(
+                          //     builder: (_) => const HomePage(),
+                          //   ),
+                          // );
                           if (isCreatingAccount == true) {
                             // register
                             try {

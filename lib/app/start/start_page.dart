@@ -15,6 +15,8 @@ class StartPage extends StatefulWidget {
   State<StartPage> createState() => _StartPageState();
 }
 
+var errorMessage = '';
+
 class _StartPageState extends State<StartPage> {
   @override
   Widget build(BuildContext context) {
@@ -49,7 +51,14 @@ class _StartPageState extends State<StartPage> {
                     style: GoogleFonts.kanit(color: Colors.black, fontSize: 18),
                   ),
                   onPressed: () async {
-                    await FirebaseAuth.instance.signInAnonymously();
+                    try {
+                      await FirebaseAuth.instance.signInAnonymously();
+                    } catch (error) {
+                      setState(() {
+                        errorMessage = error.toString();
+                      });
+                    }
+
                     print("Signed in with temporary account.");
                     Navigator.of(context).push(
                       MaterialPageRoute(
