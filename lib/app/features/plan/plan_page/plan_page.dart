@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:moja_budowa/app/plan/details_plan/details_first.dart';
+import 'package:moja_budowa/app/features/plan/details_plan/details_first.dart';
 
 class PlanPage extends StatelessWidget {
   const PlanPage({

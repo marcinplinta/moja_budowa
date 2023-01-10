@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:moja_budowa/app/cost/pages_add/add_first.dart';
+import 'package:moja_budowa/app/features/events/add_events.dart';
 
-class CostFirst extends StatelessWidget {
-  const CostFirst({
+class EventsPage extends StatelessWidget {
+  const EventsPage({
     Key? key,
   }) : super(key: key);
 
@@ -10,28 +10,20 @@ class CostFirst extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Koszty dokumentacji'),
+        title: const Text('Wydarzenia'),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (context) => const AddFirst(),
+              builder: (context) => const AddEvent(),
               fullscreenDialog: true,
             ),
           );
         },
-        child: const Icon(Icons.edit),
+        child: const Icon(Icons.add),
       ),
       backgroundColor: const Color.fromARGB(235, 213, 228, 241),
-      body: Padding(
-        padding: const EdgeInsets.all(12.0),
-        child: ListView(
-          children: const [
-            Text('koszt1'),
-          ],
-        ),
-      ),
     );
   }
 }

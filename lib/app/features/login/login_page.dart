@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:moja_budowa/app/login/reset_password.dart';
+import 'package:moja_budowa/app/features/login/reset_password.dart';
 
 class LoginPage extends StatefulWidget {
   LoginPage({

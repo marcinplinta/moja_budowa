@@ -1,15 +1,15 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:moja_budowa/app/contract/contract_page.dart';
-import 'package:moja_budowa/app/invoice/invoice_page.dart';
-import 'package:moja_budowa/app/tasks/tasks_page.dart';
-import 'package:moja_budowa/app/cost/cost_page.dart';
-import 'package:moja_budowa/app/foto/foto_page.dart';
+import 'package:moja_budowa/app/features/contract/contract_page.dart';
+import 'package:moja_budowa/app/features/invoice/invoice_page.dart';
+import 'package:moja_budowa/app/features/tasks/tasks_page.dart';
+import 'package:moja_budowa/app/features/cost/cost_page.dart';
+import 'package:moja_budowa/app/features/foto/foto_page.dart';
 
-import 'package:moja_budowa/app/events/events_page.dart';
-import 'package:moja_budowa/app/login/profile_page.dart';
-import 'package:moja_budowa/app/plan/plan_page/plan_page.dart';
+import 'package:moja_budowa/app/features/events/events_page.dart';
+import 'package:moja_budowa/app/features/login/profile_page.dart';
+import 'package:moja_budowa/app/features/plan/plan_page/plan_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({

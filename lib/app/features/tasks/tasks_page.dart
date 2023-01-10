@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:moja_budowa/app/tasks/add/add_task.dart';
-import 'package:moja_budowa/app/tasks/cubit/tasks_cubit.dart';
+import 'package:moja_budowa/app/features/tasks/cubit/tasks_cubit.dart';
 
 class TasksPage extends StatelessWidget {
   const TasksPage({

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:moja_budowa/app/cost/pages_cost_result/cost_first.dart';
+import 'package:moja_budowa/app/features/cost/pages_cost_result/cost_first.dart';
 
 class CostPage extends StatelessWidget {
   const CostPage({
