@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:moja_budowa/app/tasks/add/add_task.dart';
+import 'package:moja_budowa/app/tasks/cubit/tasks_cubit.dart';
 
 class TasksPage extends StatelessWidget {
   const TasksPage({
@@ -38,18 +40,23 @@ class TasksView extends StatelessWidget {
         child: const Icon(Icons.edit),
       ),
       backgroundColor: const Color.fromARGB(235, 213, 228, 241),
-      body: StreamBuilder<QuerySnapshot>(
-          stream: FirebaseFirestore.instance.collection('tasks').snapshots(),
-          builder: (context, snapshot) {
-            if (snapshot.hasError) {
-              return const Text('Wystąpił nieoczekiwany problem');
+      body: BlocProvider(
+        create: (context) => TasksCubit()..start(),
+        child: BlocBuilder<TasksCubit, TasksState>(
+          builder: (context, state) {
+            if (state.errorMessage.isNotEmpty) {
+              return Center(
+                child: Text(
+                  'Wystąpił nieoczekiwany problem: ${state.errorMessage}',
+                ),
+              );
             }
 
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return const Text('Proszę czekać, trwa ładowanie danych');
+            if (state.isLoading) {
+              return const Center(child: CircularProgressIndicator());
             }
 
-            final documents = snapshot.data!.docs;
+            final documents = state.documents;
 
             return ListView(
               children: [
@@ -86,7 +93,60 @@ class TasksView extends StatelessWidget {
                 ],
               ],
             );
-          }),
+
+            return StreamBuilder<QuerySnapshot>(
+                stream:
+                    FirebaseFirestore.instance.collection('tasks').snapshots(),
+                builder: (context, snapshot) {
+                  if (snapshot.hasError) {
+                    return const Text('Wystąpił nieoczekiwany problem');
+                  }
+
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const Text('Proszę czekać, trwa ładowanie danych');
+                  }
+
+                  final documents = snapshot.data!.docs;
+
+                  return ListView(
+                    children: [
+                      for (final document in documents) ...[
+                        Dismissible(
+                          key: ValueKey(document.id),
+                          background: const DecoratedBox(
+                            decoration: BoxDecoration(
+                              color: Colors.red,
+                            ),
+                            child: Align(
+                              alignment: Alignment.centerRight,
+                              child: Padding(
+                                padding: EdgeInsets.only(right: 32.0),
+                                child: Icon(
+                                  Icons.delete,
+                                ),
+                              ),
+                            ),
+                          ),
+                          onDismissed: (_) {
+                            (direction) {
+                              direction == (DismissDirection.startToEnd);
+                            };
+                            FirebaseFirestore.instance
+                                .collection('tasks')
+                                .doc(document.id)
+                                .delete();
+                          },
+                          child: TaskWidget(
+                            document['title'],
+                          ),
+                        ),
+                      ],
+                    ],
+                  );
+                });
+          },
+        ),
+      ),
     );
   }
 }
