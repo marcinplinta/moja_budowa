@@ -1,14 +1,21 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:moja_budowa/app/home/home_page.dart';
-import 'package:moja_budowa/app/login/login_page.dart';
-import 'package:moja_budowa/app/regist/regist_page.dart';
 
-class StartPage extends StatelessWidget {
-  const StartPage({
+import 'package:moja_budowa/app/login/login_page.dart';
+
+class StartPage extends StatefulWidget {
+  StartPage({
     Key? key,
   }) : super(key: key);
+  final userCredential = FirebaseAuth.instance.signInAnonymously();
 
+  @override
+  State<StartPage> createState() => _StartPageState();
+}
+
+class _StartPageState extends State<StartPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,8 +48,10 @@ class StartPage extends StatelessWidget {
                     "Kontynuuj jako gość",
                     style: GoogleFonts.kanit(color: Colors.black, fontSize: 18),
                   ),
-                  onPressed: () {
-                    Navigator.of(context).pushReplacement(
+                  onPressed: () async {
+                    await FirebaseAuth.instance.signInAnonymously();
+                    print("Signed in with temporary account.");
+                    Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (_) => const HomePage(),
                       ),
@@ -63,9 +72,9 @@ class StartPage extends StatelessWidget {
                     style: GoogleFonts.kanit(color: Colors.black, fontSize: 26),
                   ),
                   onPressed: () {
-                    Navigator.of(context).push(
+                    Navigator.of(context).pushReplacement(
                       MaterialPageRoute(
-                        builder: (_) => const LoginPage(),
+                        builder: (_) => LoginPage(),
                       ),
                     );
                   },
@@ -79,9 +88,9 @@ class StartPage extends StatelessWidget {
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
                   ),
                   onPressed: () {
-                    Navigator.of(context).push(
+                    Navigator.of(context).pushReplacement(
                       MaterialPageRoute(
-                        builder: (_) => const RegistPage(),
+                        builder: (_) => LoginPage(),
                       ),
                     );
                   },

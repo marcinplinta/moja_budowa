@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:moja_budowa/app/contract/contract_page.dart';
@@ -7,13 +8,15 @@ import 'package:moja_budowa/app/cost/cost_page.dart';
 import 'package:moja_budowa/app/foto/foto_page.dart';
 
 import 'package:moja_budowa/app/events/events_page.dart';
+import 'package:moja_budowa/app/login/profile_page.dart';
 import 'package:moja_budowa/app/plan/plan_page/plan_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({
     Key? key,
+    // required this.user,
   }) : super(key: key);
-
+  // final User user;
   @override
   State<HomePage> createState() => _HomePageState();
 }
@@ -28,7 +31,16 @@ class _HomePageState extends State<HomePage> {
         title: const Text('Moja Budowa'),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (_) => ProfilPage(
+                    email: 'jesteś zalogowany jako gość',
+                    // email: widget.user.email,
+                  ),
+                ),
+              );
+            },
             icon: const Icon(Icons.person),
           ),
         ],
