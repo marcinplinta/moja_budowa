@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:moja_budowa/app/list_to_do/add/add_task.dart';
+import 'package:moja_budowa/app/tasks/add/add_task.dart';
 
-class ListToDoPage extends StatelessWidget {
-  const ListToDoPage({
+class TasksPage extends StatelessWidget {
+  const TasksPage({
     Key? key,
   }) : super(key: key);
 
@@ -13,13 +13,13 @@ class ListToDoPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Lista do Zrobienia'),
       ),
-      body: const ListToDoView(),
+      body: const TasksView(),
     );
   }
 }
 
-class ListToDoView extends StatelessWidget {
-  const ListToDoView({
+class TasksView extends StatelessWidget {
+  const TasksView({
     Key? key,
   }) : super(key: key);
 

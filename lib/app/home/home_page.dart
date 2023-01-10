@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:moja_budowa/app/contract/contract_page.dart';
 import 'package:moja_budowa/app/invoice/invoice_page.dart';
-import 'package:moja_budowa/app/list_to_do/list_to_do_page.dart';
+import 'package:moja_budowa/app/tasks/tasks_page.dart';
 import 'package:moja_budowa/app/cost/cost_page.dart';
 import 'package:moja_budowa/app/foto/foto_page.dart';
 
@@ -48,7 +48,7 @@ class _HomePageState extends State<HomePage> {
       backgroundColor: const Color.fromARGB(235, 213, 228, 241),
       body: Builder(builder: (context) {
         if (currentIndex == 0) {
-          return const ListToDoView();
+          return const TasksView();
         }
 
         if (currentIndex == 2) {
@@ -83,7 +83,7 @@ class _HomePageState extends State<HomePage> {
                 onPressed: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: (_) => const ListToDoPage(),
+                      builder: (_) => const TasksPage(),
                     ),
                   );
                 },
