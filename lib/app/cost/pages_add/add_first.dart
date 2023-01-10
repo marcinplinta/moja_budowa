@@ -21,11 +21,11 @@ class AddFirst extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Column(
-          children: const [
-            SizedBox(
+          children: [
+            const SizedBox(
               height: 10,
             ),
-            TextField(
+            const TextField(
               minLines: 1,
               maxLines: 4,
               decoration: InputDecoration(
@@ -33,10 +33,10 @@ class AddFirst extends StatelessWidget {
                   labelText: 'dodaj usługę lub materiał',
                   hintText: 'projekt domu'),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
-            TextField(
+            const TextField(
               minLines: 1,
               maxLines: 4,
               decoration: InputDecoration(
@@ -44,6 +44,13 @@ class AddFirst extends StatelessWidget {
                 labelText: 'podaj kwotę',
               ),
             ),
+            const SizedBox(
+              height: 10,
+            ),
+            ElevatedButton(
+              onPressed: () {},
+              child: const Text(' wybierz datę'),
+            )
           ],
         ),
       ),
