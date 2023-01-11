@@ -79,7 +79,7 @@ class _HomePageState extends State<HomePage> {
                 },
               ),
               ElevatedButton(
-                child: const Text('Lista do Zrobienia'),
+                child: const Text('Lista Zadań'),
                 onPressed: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(
@@ -173,7 +173,7 @@ class _HomePageState extends State<HomePage> {
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.event_note),
-            label: "lista do zrobienia",
+            label: "Lista zadań",
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
