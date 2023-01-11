@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:moja_budowa/app/features/events/add_events.dart';
+import 'package:moja_budowa/app/features/event/add_event.dart';
 
-class EventsPage extends StatelessWidget {
-  const EventsPage({
+class EventPage extends StatelessWidget {
+  const EventPage({
     Key? key,
   }) : super(key: key);
 

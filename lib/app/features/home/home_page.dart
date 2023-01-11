@@ -7,7 +7,7 @@ import 'package:moja_budowa/app/features/tasks/tasks_page.dart';
 import 'package:moja_budowa/app/features/cost/cost_page.dart';
 import 'package:moja_budowa/app/features/foto/foto_page.dart';
 
-import 'package:moja_budowa/app/features/events/events_page.dart';
+import 'package:moja_budowa/app/features/event/event_page.dart';
 import 'package:moja_budowa/app/features/login/profile_page.dart';
 import 'package:moja_budowa/app/features/plan/plan_page/plan_page.dart';
 
@@ -93,7 +93,7 @@ class _HomePageState extends State<HomePage> {
                 onPressed: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: (_) => const EventsPage(),
+                      builder: (_) => const EventPage(),
                     ),
                   );
                 },
