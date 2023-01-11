@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
 
-import 'package:moja_budowa/app/start_page_content/start_page.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:moja_budowa/app/features/start/start_page.dart';
 
-void main() {
+import 'firebase_options.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 
@@ -16,7 +23,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const StartPage(),
+      home: StartPage(),
     );
   }
 }
