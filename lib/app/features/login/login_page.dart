@@ -29,7 +29,7 @@ class _LoginPageState extends State<LoginPage> {
             children: [
               const Image(
                 image: AssetImage('images/domek.jpg'),
-                width: 10,
+                width: 100,
               ),
               Text(
                 'Moja budowa',
