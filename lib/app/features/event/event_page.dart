@@ -130,7 +130,7 @@ class _ListViewEvent extends StatelessWidget {
                         ),
                         const SizedBox(height: 10),
                         Text(
-                          eventModel.releaseDate.toString(),
+                          eventModel.releaseDateFormatted(),
                         ),
                       ],
                     ),

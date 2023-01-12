@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 import 'package:moja_budowa/app/features/event/add_event/cubit/addevent_cubit.dart';
 import 'package:moja_budowa/repositories/events_repository.dart';
 
@@ -64,7 +65,9 @@ class _AddeventState extends State<AddEventPage> {
                     _releaseDate = newValue;
                   });
                 },
-                selectedDateFormatted: _releaseDate?.toIso8601String(),
+                selectedDateFormatted: _releaseDate == null
+                    ? null
+                    : DateFormat.yMMMMEEEEd().format(_releaseDate!),
               ),
             );
           },

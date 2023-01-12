@@ -1,3 +1,5 @@
+import 'package:intl/intl.dart';
+
 class EventModel {
   EventModel({
     required this.id,
@@ -10,5 +12,9 @@ class EventModel {
   final DateTime releaseDate;
   String daysLeft() {
     return releaseDate.difference(DateTime.now()).inDays.toString();
+  }
+
+  String releaseDateFormatted() {
+    return DateFormat.yMMMEd().format(releaseDate);
   }
 }
