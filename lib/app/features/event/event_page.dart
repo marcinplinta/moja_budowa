@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:moja_budowa/app/features/event/add_event/add_event_page.dart';
 import 'package:moja_budowa/app/features/event/cubit/event_cubit.dart';
 import 'package:moja_budowa/models/event_model.dart';
+import 'package:moja_budowa/repositories/events_repository.dart';
 
 class EventPage extends StatelessWidget {
   const EventPage({
@@ -40,7 +41,7 @@ class EventPageBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => EventCubit()..start(),
+      create: (context) => EventCubit(EventsRepository())..start(),
       child: BlocBuilder<EventCubit, EventState>(
         builder: (context, state) {
           final eventModels = state.events;

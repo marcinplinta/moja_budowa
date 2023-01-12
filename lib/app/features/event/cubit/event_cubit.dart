@@ -1,31 +1,22 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:moja_budowa/models/event_model.dart';
+import 'package:moja_budowa/repositories/events_repository.dart';
 
 part 'event_state.dart';
 
 class EventCubit extends Cubit<EventState> {
-  EventCubit() : super(const EventState());
+  EventCubit(this._eventsRepository) : super(const EventState());
+
+  final EventsRepository _eventsRepository;
 
   StreamSubscription? _streamSubscription;
 
   Future<void> start() async {
-    _streamSubscription = FirebaseFirestore.instance
-        .collection('events')
-        .orderBy('release_date')
-        .snapshots()
-        .listen(
+    _streamSubscription = _eventsRepository.getEventsStream().listen(
       (events) {
-        final eventModels = events.docs.map((doc) {
-          return EventModel(
-            id: doc.id,
-            title: doc['title'],
-            releaseDate: (doc['release_date'] as Timestamp).toDate(),
-          );
-        }).toList();
-        emit(EventState(events: eventModels));
+        emit(EventState(events: events));
       },
     )..onError(
         (error) {
@@ -36,10 +27,7 @@ class EventCubit extends Cubit<EventState> {
 
   Future<void> remove({required String documentID}) async {
     try {
-      await FirebaseFirestore.instance
-          .collection('events')
-          .doc(documentID)
-          .delete();
+      await _eventsRepository.delete(id: documentID);
     } catch (error) {
       emit(
         const EventState(removingErrorOccured: true),

@@ -1,23 +1,23 @@
 import 'package:bloc/bloc.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+
 import 'dart:async';
+
+import 'package:moja_budowa/repositories/events_repository.dart';
 part 'addevent_state.dart';
 
 class AddeventCubit extends Cubit<AddeventState> {
-  AddeventCubit() : super(const AddeventState());
+  AddeventCubit(this._eventsRepository) : super(const AddeventState());
+
+  final EventsRepository _eventsRepository;
 
   Future<void> add(
     String title,
     DateTime releaseDate,
   ) async {
     try {
+      await _eventsRepository.add(title, releaseDate);
       // throw Exception('Coś poszło nie tak');
-      await FirebaseFirestore.instance.collection('events').add(
-        {
-          'title': title,
-          'release_date': releaseDate,
-        },
-      );
+
       emit(const AddeventState(saved: true));
     } catch (error) {
       emit(AddeventState(errorMessage: error.toString()));

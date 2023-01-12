@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:moja_budowa/app/features/event/add_event/cubit/addevent_cubit.dart';
+import 'package:moja_budowa/repositories/events_repository.dart';
 
 class AddEventPage extends StatefulWidget {
   const AddEventPage({
@@ -18,7 +19,7 @@ class _AddeventState extends State<AddEventPage> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => AddeventCubit(),
+      create: (context) => AddeventCubit(EventsRepository()),
       child: BlocListener<AddeventCubit, AddeventState>(
         listener: (context, state) {
           if (state.saved) {
