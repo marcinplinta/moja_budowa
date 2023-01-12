@@ -18,10 +18,10 @@ class HomePage extends StatefulWidget {
   }) : super(key: key);
   // final User user;
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<HomePage> createState() => HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class HomePageState extends State<HomePage> {
   var currentIndex = 1;
 
   @override

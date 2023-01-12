@@ -39,7 +39,7 @@ class TasksCubit extends Cubit<TasksState> {
       ..onError((error) {
         emit(
           TasksState(
-            documents: [],
+            documents: const [],
             isLoading: false,
             errorMessage: error.toString(),
           ),

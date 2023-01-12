@@ -1,4 +1,3 @@
-part of 'root_cubit.dart';
+// part of 'root_cubit.dart';
 
-@immutable
-class RootState {}
+// class RootState {}

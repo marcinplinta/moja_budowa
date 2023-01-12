@@ -12,12 +12,12 @@ class StartPage extends StatefulWidget {
   final userCredential = FirebaseAuth.instance.signInAnonymously();
 
   @override
-  State<StartPage> createState() => _StartPageState();
+  State<StartPage> createState() => StartPageState();
 }
 
 var errorMessage = '';
 
-class _StartPageState extends State<StartPage> {
+class StartPageState extends State<StartPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,13 +51,13 @@ class _StartPageState extends State<StartPage> {
                     style: GoogleFonts.kanit(color: Colors.black, fontSize: 18),
                   ),
                   onPressed: () async {
-                    try {
-                      await FirebaseAuth.instance.signInAnonymously();
-                    } catch (error) {
-                      setState(() {
-                        errorMessage = error.toString();
-                      });
-                    }
+                    // try {
+                    //   await FirebaseAuth.instance.signInAnonymously();
+                    // } catch (error) {
+                    //   setState(() {
+                    //     errorMessage = error.toString();
+                    //   });
+                    // }
 
                     print("Signed in with temporary account.");
                     Navigator.of(context).push(

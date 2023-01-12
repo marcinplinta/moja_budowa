@@ -12,10 +12,10 @@ class LoginPage extends StatefulWidget {
 
   final passwordController = TextEditingController();
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<LoginPage> createState() => LoginPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class LoginPageState extends State<LoginPage> {
   var errorMessage = '';
   var isCreatingAccount = false;
 

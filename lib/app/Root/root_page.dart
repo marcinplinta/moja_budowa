@@ -1,7 +1,7 @@
 // import 'package:firebase_auth/firebase_auth.dart';
 // import 'package:flutter/material.dart';
-// import 'package:moja_budowa/app/home/home_page.dart';
-// import 'package:moja_budowa/app/login/login_page.dart';
+// import 'package:moja_budowa/app/features/home/home_page.dart';
+// import 'package:moja_budowa/app/features/login/login_page.dart';
 
 // class RootPage extends StatelessWidget {
 //   const RootPage({

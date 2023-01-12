@@ -1,8 +1,8 @@
-import 'package:bloc/bloc.dart';
-import 'package:meta/meta.dart';
+// import 'package:bloc/bloc.dart';
+// import 'package:meta/meta.dart';
 
-part 'root_state.dart';
+// part 'root_state.dart';
 
-class RootCubit extends Cubit<RootState> {
-  RootCubit() : super(RootState());
-}
+// class RootCubit extends Cubit<RootState> {
+//   RootCubit() : super(RootState());
+// }
