@@ -19,40 +19,55 @@ class _AddeventState extends State<AddEventPage> {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => AddeventCubit(),
-      child: BlocBuilder<AddeventCubit, AddeventState>(
-        builder: (context, state) {
-          return Scaffold(
-            appBar: AppBar(
-              title: const Text('Dodaj wydarzenie'),
-              actions: [
-                IconButton(
-                  onPressed: _title == null || _releaseDate == null
-                      ? null
-                      : () {
-                          context.read<AddeventCubit>().add(
-                                _title!,
-                                _releaseDate!,
-                              );
-                        },
-                  icon: const Icon(Icons.check),
-                ),
-              ],
-            ),
-            body: _AddPageBody(
-              onTitleChanged: (newValue) {
-                setState(() {
-                  _title = newValue;
-                });
-              },
-              onDateChanged: (newValue) {
-                setState(() {
-                  _releaseDate = newValue;
-                });
-              },
-              selectedDateFormatted: _releaseDate?.toIso8601String(),
-            ),
-          );
+      child: BlocListener<AddeventCubit, AddeventState>(
+        listener: (context, state) {
+          if (state.saved) {
+            Navigator.of(context).pop();
+          }
+          if (state.errorMessage.isNotEmpty) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text(state.errorMessage),
+                backgroundColor: Colors.red,
+              ),
+            );
+          }
         },
+        child: BlocBuilder<AddeventCubit, AddeventState>(
+          builder: (context, state) {
+            return Scaffold(
+              appBar: AppBar(
+                title: const Text('Dodaj wydarzenie'),
+                actions: [
+                  IconButton(
+                    onPressed: _title == null || _releaseDate == null
+                        ? null
+                        : () {
+                            context.read<AddeventCubit>().add(
+                                  _title!,
+                                  _releaseDate!,
+                                );
+                          },
+                    icon: const Icon(Icons.check),
+                  ),
+                ],
+              ),
+              body: _AddPageBody(
+                onTitleChanged: (newValue) {
+                  setState(() {
+                    _title = newValue;
+                  });
+                },
+                onDateChanged: (newValue) {
+                  setState(() {
+                    _releaseDate = newValue;
+                  });
+                },
+                selectedDateFormatted: _releaseDate?.toIso8601String(),
+              ),
+            );
+          },
+        ),
       ),
     );
   }

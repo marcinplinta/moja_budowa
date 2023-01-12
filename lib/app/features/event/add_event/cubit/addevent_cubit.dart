@@ -11,6 +11,7 @@ class AddeventCubit extends Cubit<AddeventState> {
     DateTime releaseDate,
   ) async {
     try {
+      // throw Exception('Coś poszło nie tak');
       await FirebaseFirestore.instance.collection('events').add(
         {
           'title': title,
