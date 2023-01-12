@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:moja_budowa/models/event_model.dart';
 
 part 'event_state.dart';
 
@@ -17,7 +18,14 @@ class EventCubit extends Cubit<EventState> {
         .snapshots()
         .listen(
       (events) {
-        emit(EventState(events: events));
+        final eventModels = events.docs.map((doc) {
+          return EventModel(
+            id: doc.id,
+            title: doc['title'],
+            releaseDate: (doc['release_date'] as Timestamp).toDate(),
+          );
+        }).toList();
+        emit(EventState(events: eventModels));
       },
     )..onError(
         (error) {

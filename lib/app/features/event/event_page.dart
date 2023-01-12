@@ -1,8 +1,8 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:moja_budowa/app/features/event/add_event/add_event_page.dart';
 import 'package:moja_budowa/app/features/event/cubit/event_cubit.dart';
+import 'package:moja_budowa/models/event_model.dart';
 
 class EventPage extends StatelessWidget {
   const EventPage({
@@ -15,7 +15,7 @@ class EventPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Wydarzenia'),
       ),
-       body: const EventPageBody(),
+      body: const EventPageBody(),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.of(context).push(
@@ -43,8 +43,8 @@ class EventPageBody extends StatelessWidget {
       create: (context) => EventCubit()..start(),
       child: BlocBuilder<EventCubit, EventState>(
         builder: (context, state) {
-          final docs = state.events?.docs;
-          if (docs == null) {
+          final eventModels = state.events;
+          if (eventModels.isEmpty) {
             return const SizedBox.shrink();
           }
           return ListView(
@@ -52,9 +52,9 @@ class EventPageBody extends StatelessWidget {
               vertical: 20,
             ),
             children: [
-              for (final doc in docs)
+              for (final eventModel in eventModels)
                 Dismissible(
-                  key: ValueKey(doc.id),
+                  key: ValueKey(eventModel.id),
                   background: const DecoratedBox(
                     decoration: BoxDecoration(
                       color: Colors.red,
@@ -74,10 +74,12 @@ class EventPageBody extends StatelessWidget {
                     return direction == DismissDirection.endToStart;
                   },
                   onDismissed: (direction) {
-                    context.read<EventCubit>().remove(documentID: doc.id);
+                    context
+                        .read<EventCubit>()
+                        .remove(documentID: eventModel.id);
                   },
                   child: _ListViewEvent(
-                    document: doc,
+                    eventModel: eventModel,
                   ),
                 ),
             ],
@@ -91,10 +93,10 @@ class EventPageBody extends StatelessWidget {
 class _ListViewEvent extends StatelessWidget {
   const _ListViewEvent({
     Key? key,
-    required this.document,
+    required this.eventModel,
   }) : super(key: key);
 
-  final QueryDocumentSnapshot<Map<String, dynamic>> document;
+  final EventModel eventModel;
 
   @override
   Widget build(BuildContext context) {
@@ -119,7 +121,7 @@ class _ListViewEvent extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         Text(
-                          document['title'],
+                          eventModel.title,
                           style: const TextStyle(
                             fontSize: 20.0,
                             fontWeight: FontWeight.bold,
@@ -127,9 +129,7 @@ class _ListViewEvent extends StatelessWidget {
                         ),
                         const SizedBox(height: 10),
                         Text(
-                          (document['release_date'] as Timestamp)
-                              .toDate()
-                              .toString(),
+                          eventModel.releaseDate.toString(),
                         ),
                       ],
                     ),
