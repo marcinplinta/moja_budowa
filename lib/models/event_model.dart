@@ -8,4 +8,7 @@ class EventModel {
   final String id;
   final String title;
   final DateTime releaseDate;
+  String daysLeft() {
+    return releaseDate.difference(DateTime.now()).inDays.toString();
+  }
 }

@@ -142,15 +142,15 @@ class _ListViewEvent extends StatelessWidget {
                   margin: const EdgeInsets.all(10),
                   padding: const EdgeInsets.all(10),
                   child: Column(
-                    children: const [
+                    children: [
                       Text(
-                        '0',
-                        style: TextStyle(
+                        eventModel.daysLeft(),
+                        style: const TextStyle(
                           fontSize: 20.0,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      Text('days left'),
+                      const Text('pozostało dni'),
                     ],
                   ),
                 ),
