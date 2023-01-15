@@ -6,7 +6,7 @@ import 'package:moja_budowa/app/features/home/home_page.dart';
 import 'package:moja_budowa/app/features/login/login_page.dart';
 
 class StartPage extends StatefulWidget {
-  StartPage({
+  const StartPage({
     Key? key,
   }) : super(key: key);
   //final userCredential = FirebaseAuth.instance.signInAnonymously();

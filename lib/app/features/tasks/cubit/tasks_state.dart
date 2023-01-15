@@ -1,6 +1,5 @@
 part of 'tasks_cubit.dart';
 
-@immutable
 class TasksState {
   final List<QueryDocumentSnapshot<Object?>> documents;
   final bool isLoading;

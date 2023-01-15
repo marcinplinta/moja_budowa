@@ -14,7 +14,6 @@ class RootPage extends StatelessWidget {
         stream: FirebaseAuth.instance.authStateChanges(),
         builder: (context, snapshot) {
           final user = snapshot.data;
-          print(user);
           if (user == null) {
             return StartPage();
           }
