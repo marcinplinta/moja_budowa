@@ -19,13 +19,14 @@ class ProfilPage extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text('Jesteś zalogowany jako $email'),
+              Text('Jesteś zalogowany jako ${email ?? 'gość'}'),
               const SizedBox(
                 height: 10,
               ),
               ElevatedButton(
                   onPressed: () {
                     FirebaseAuth.instance.signOut();
+                    Navigator.of(context).pop();
                   },
                   child: const Text('Wyloguj'))
             ],

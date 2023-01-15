@@ -14,9 +14,9 @@ import 'package:moja_budowa/app/features/plan/plan_page/plan_page.dart';
 class HomePage extends StatefulWidget {
   const HomePage({
     Key? key,
-    // required this.user,
+    required this.user,
   }) : super(key: key);
-  // final User user;
+  final User user;
   @override
   State<HomePage> createState() => HomePageState();
 }
@@ -35,8 +35,8 @@ class HomePageState extends State<HomePage> {
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (_) => ProfilPage(
-                    email: 'jesteś zalogowany jako gość',
-                    // email: widget.user.email,
+                    // email: 'jesteś zalogowany jako gość',
+                    email: widget.user.email,
                   ),
                 ),
               );

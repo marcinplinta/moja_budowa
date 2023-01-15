@@ -9,7 +9,7 @@ class StartPage extends StatefulWidget {
   StartPage({
     Key? key,
   }) : super(key: key);
-  final userCredential = FirebaseAuth.instance.signInAnonymously();
+  //final userCredential = FirebaseAuth.instance.signInAnonymously();
 
   @override
   State<StartPage> createState() => StartPageState();
@@ -51,20 +51,20 @@ class StartPageState extends State<StartPage> {
                     style: GoogleFonts.kanit(color: Colors.black, fontSize: 18),
                   ),
                   onPressed: () async {
-                    // try {
-                    //   await FirebaseAuth.instance.signInAnonymously();
-                    // } catch (error) {
-                    //   setState(() {
-                    //     errorMessage = error.toString();
-                    //   });
-                    // }
+                    try {
+                      await FirebaseAuth.instance.signInAnonymously();
+                    } catch (error) {
+                      setState(() {
+                        errorMessage = error.toString();
+                      });
+                    }
 
-                    print("Signed in with temporary account.");
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (_) => const HomePage(),
-                      ),
-                    );
+                    // print("Signed in with temporary account.");
+                    // Navigator.of(context).push(
+                    //   MaterialPageRoute(
+                    //     builder: (_) => const HomePage(),
+                    //   ),
+                    // );
                   },
                 ),
                 const SizedBox(height: 250),
