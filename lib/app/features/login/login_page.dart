@@ -1,6 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:moja_budowa/app/cubit/root_cubit.dart';
 import 'package:moja_budowa/app/features/login/reset_password.dart';
 
 class LoginPage extends StatefulWidget {
@@ -118,6 +120,7 @@ class LoginPageState extends State<LoginPage> {
                           } else {
                             //logged
                             try {
+                              // context.read<RootCubit>().singIn();
                               await FirebaseAuth.instance
                                   .signInWithEmailAndPassword(
                                 email: widget.emailController.text,

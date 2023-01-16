@@ -1,3 +1,14 @@
-// part of 'root_cubit.dart';
+part of 'root_cubit.dart';
 
-// class RootState {}
+@immutable
+class RootState {
+  final User? user;
+  final bool isLoading;
+  final String errorMessage;
+
+  const RootState({
+    required this.user,
+    required this.isLoading,
+    required this.errorMessage,
+  });
+}

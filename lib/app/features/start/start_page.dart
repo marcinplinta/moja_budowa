@@ -13,9 +13,8 @@ class StartPage extends StatefulWidget {
   State<StartPage> createState() => StartPageState();
 }
 
-var errorMessage = '';
-
 class StartPageState extends State<StartPage> {
+  var errorMessage = '';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
