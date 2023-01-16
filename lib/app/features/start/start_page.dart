@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:moja_budowa/app/features/home/home_page.dart';
 
 import 'package:moja_budowa/app/features/login/login_page.dart';
 
@@ -9,7 +8,6 @@ class StartPage extends StatefulWidget {
   const StartPage({
     Key? key,
   }) : super(key: key);
-  //final userCredential = FirebaseAuth.instance.signInAnonymously();
 
   @override
   State<StartPage> createState() => StartPageState();
@@ -58,22 +56,15 @@ class StartPageState extends State<StartPage> {
                         errorMessage = error.toString();
                       });
                     }
-
-                    // print("Signed in with temporary account.");
-                    // Navigator.of(context).push(
-                    //   MaterialPageRoute(
-                    //     builder: (_) => const HomePage(),
-                    //   ),
-                    // );
                   },
                 ),
-                const SizedBox(height: 250),
+                const SizedBox(height: 270),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(16),
                     ),
-                    fixedSize: const Size(180, 40),
+                    fixedSize: const Size(200, 50),
                     backgroundColor: const Color.fromARGB(255, 162, 222, 240),
                   ),
                   child: Text(
@@ -88,23 +79,6 @@ class StartPageState extends State<StartPage> {
                     );
                   },
                 ),
-                TextButton(
-                  style: TextButton.styleFrom(
-                    foregroundColor: const Color.fromARGB(223, 14, 13, 13),
-                  ),
-                  child: const Text(
-                    'Nie masz konta? Zarejestruj się',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-                  ),
-                  onPressed: () {
-                    Navigator.of(context).pushReplacement(
-                      MaterialPageRoute(
-                        builder: (_) => LoginPage(),
-                      ),
-                    );
-                  },
-                ),
-                const SizedBox(height: 120),
               ],
             )),
           ),
