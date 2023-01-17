@@ -20,8 +20,8 @@ class LoginRepository {
     );
   }
 
-  Future<UserCredential> signInAn() {
-    return FirebaseAuth.instance.signInAnonymously();
+  Future<void> signInAn() async {
+    await FirebaseAuth.instance.signInAnonymously();
   }
 
   Future<void> signOut() {
