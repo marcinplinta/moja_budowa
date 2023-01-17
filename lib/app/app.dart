@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:moja_budowa/app/cubit/root_cubit.dart';
 import 'package:moja_budowa/app/features/home/home_page.dart';
 import 'package:moja_budowa/app/features/start/start_page.dart';
+import 'package:moja_budowa/repositories/login_repository.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -27,7 +28,7 @@ class RootPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => RootCubit()..start(),
+      create: (context) => RootCubit(LoginRepository())..start(),
       child: BlocBuilder<RootCubit, RootState>(
         builder: (context, state) {
           final user = state.user;
