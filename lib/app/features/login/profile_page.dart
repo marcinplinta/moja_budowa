@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:moja_budowa/app/cubit/root_cubit.dart';
+import 'package:moja_budowa/repositories/login_repository.dart';
 
 class ProfilPage extends StatelessWidget {
   const ProfilPage({
@@ -16,7 +17,7 @@ class ProfilPage extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.all(12.0),
         child: BlocProvider(
-          create: (context) => RootCubit(),
+          create: (context) => RootCubit(LoginRepository()),
           child: BlocBuilder<RootCubit, RootState>(
             builder: (context, state) {
               return Center(
