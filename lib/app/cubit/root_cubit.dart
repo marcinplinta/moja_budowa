@@ -55,6 +55,13 @@ class RootCubit extends Cubit<RootState> {
     );
   }
 
+  Future<void> signInAn() async {
+    _loginRepository.signInAn();
+    emit(
+      const RootState(status: Status.success),
+    );
+  }
+
   Future<void> creatingAccount() async {
     emit(
       const RootState(

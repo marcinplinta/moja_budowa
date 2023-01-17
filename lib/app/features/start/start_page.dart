@@ -1,20 +1,15 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:moja_budowa/app/cubit/root_cubit.dart';
 
 import 'package:moja_budowa/app/features/login/login_page.dart';
 
-class StartPage extends StatefulWidget {
+class StartPage extends StatelessWidget {
   const StartPage({
     Key? key,
   }) : super(key: key);
 
-  @override
-  State<StartPage> createState() => StartPageState();
-}
-
-class StartPageState extends State<StartPage> {
-  var errorMessage = '';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,14 +42,8 @@ class StartPageState extends State<StartPage> {
                     "Kontynuuj jako gość",
                     style: GoogleFonts.kanit(color: Colors.black, fontSize: 18),
                   ),
-                  onPressed: () async {
-                    try {
-                      await FirebaseAuth.instance.signInAnonymously();
-                    } catch (error) {
-                      setState(() {
-                        errorMessage = error.toString();
-                      });
-                    }
+                  onPressed: () {
+                    context.read<RootCubit>().signInAn();
                   },
                 ),
                 const SizedBox(height: 270),

@@ -20,6 +20,10 @@ class LoginRepository {
     );
   }
 
+  Future<UserCredential> signInAn() {
+    return FirebaseAuth.instance.signInAnonymously();
+  }
+
   Future<void> signOut() {
     return FirebaseAuth.instance.signOut();
   }
