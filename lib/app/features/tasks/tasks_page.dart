@@ -1,8 +1,9 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:moja_budowa/app/features/tasks/add/add_task.dart';
 import 'package:moja_budowa/app/features/tasks/cubit/tasks_cubit.dart';
+import 'package:moja_budowa/models/task_model.dart';
+import 'package:moja_budowa/repositories/tasks_repository.dart';
 
 class TasksPage extends StatelessWidget {
   const TasksPage({
@@ -41,9 +42,11 @@ class TasksView extends StatelessWidget {
       ),
       backgroundColor: const Color.fromARGB(235, 213, 228, 241),
       body: BlocProvider(
-        create: (context) => TasksCubit()..start(),
+        create: (context) => TasksCubit(TasksRepository())..start(),
         child: BlocBuilder<TasksCubit, TasksState>(
           builder: (context, state) {
+            final docs = state.tasks;
+
             if (state.errorMessage.isNotEmpty) {
               return Center(
                 child: Text(
@@ -56,13 +59,11 @@ class TasksView extends StatelessWidget {
               return const Center(child: CircularProgressIndicator());
             }
 
-            final documents = state.documents;
-
             return ListView(
               children: [
-                for (final document in documents) ...[
+                for (final doc in docs) ...[
                   Dismissible(
-                    key: ValueKey(document.id),
+                    key: ValueKey(doc.id),
                     background: const DecoratedBox(
                       decoration: BoxDecoration(
                         color: Colors.red,
@@ -81,13 +82,13 @@ class TasksView extends StatelessWidget {
                       (direction) {
                         direction == (DismissDirection.startToEnd);
                       };
-                      FirebaseFirestore.instance
-                          .collection('tasks')
-                          .doc(document.id)
-                          .delete();
+                      context.read<TasksCubit>().remove(id: doc.id);
                     },
                     child: TaskWidget(
-                      document['title'],
+                      taskModel: TaskModel(
+                        id: doc.id,
+                        title: doc.title,
+                      ),
                     ),
                   ),
                 ],
@@ -101,11 +102,12 @@ class TasksView extends StatelessWidget {
 }
 
 class TaskWidget extends StatelessWidget {
-  const TaskWidget(
-    this.title, {
+  const TaskWidget({
     Key? key,
+    required this.taskModel,
   }) : super(key: key);
-  final String title;
+
+  final TaskModel taskModel;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -113,7 +115,9 @@ class TaskWidget extends StatelessWidget {
       padding: const EdgeInsets.all(15),
       margin: const EdgeInsets.all(10),
       color: Colors.amber,
-      child: Text(title),
+      child: Text(
+        taskModel.title,
+      ),
     );
   }
 }
