@@ -60,7 +60,7 @@ class StartPage extends StatelessWidget {
                     style: GoogleFonts.kanit(color: Colors.black, fontSize: 26),
                   ),
                   onPressed: () {
-                    Navigator.of(context).pushReplacement(
+                    Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (_) => LoginPage(),
                       ),

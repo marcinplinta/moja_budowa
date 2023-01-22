@@ -24,15 +24,20 @@ class LoginPage extends StatelessWidget {
             backgroundColor: const Color.fromARGB(235, 213, 228, 241),
             body: SafeArea(
               child: Center(
-                child: (Column(
+                child: (ListView(
                   children: [
                     const Image(
                       image: AssetImage('images/domek.jpg'),
                       width: 100,
                     ),
-                    Text(
-                      'Moja budowa',
-                      style: GoogleFonts.kanit(fontSize: 25),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'Moja budowa',
+                          style: GoogleFonts.kanit(fontSize: 25),
+                        ),
+                      ],
                     ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -98,15 +103,17 @@ class LoginPage extends StatelessWidget {
                               onPressed: () async {
                                 if (state.isCreatingAccount == true) {
                                   // rejestracja
-                                  context.read<RootCubit>().register(
+                                  await context.read<RootCubit>().register(
                                         email: emailController.text,
                                         password: passwordController.text,
                                       );
+                                  Navigator.of(context).pop();
                                 } else {
                                   // logowanie
-                                  context.read<RootCubit>().signIn(
+                                  await context.read<RootCubit>().signIn(
                                       email: emailController.text,
                                       password: passwordController.text);
+                                  Navigator.of(context).pop();
                                 }
                               },
                             ),
