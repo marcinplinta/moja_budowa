@@ -17,7 +17,7 @@ class AddFirst extends StatefulWidget {
 class _AddFirstState extends State<AddFirst> {
   String? _title;
 
-  DateTime? _releaseDate;
+  DateTime? _date;
   // double? _amount;
 
   @override
@@ -45,14 +45,14 @@ class _AddFirstState extends State<AddFirst> {
                 title: const Text('Koszty dokumentacji'),
                 actions: [
                   IconButton(
-                    onPressed: _title == null || _releaseDate == null
+                    onPressed: _title == null || _date == null
                         // ||
                         // _amount == null
                         ? null
                         : () {
                             context.read<AddFirstCubit>().add(
                                   _title!,
-                                  _releaseDate!,
+                                  _date!,
                                   // _amount!,
                                 );
                           },
@@ -73,12 +73,12 @@ class _AddFirstState extends State<AddFirst> {
                 // },
                 onDateChanged: (newValue) {
                   setState(() {
-                    _releaseDate = newValue;
+                    _date = newValue;
                   });
                 },
-                selectedDateFormatted: _releaseDate == null
+                selectedDateFormatted: _date == null
                     ? null
-                    : DateFormat.yMMMMEEEEd().format(_releaseDate!),
+                    : DateFormat.yMMMMEEEEd().format(_date!),
               ),
             );
           },

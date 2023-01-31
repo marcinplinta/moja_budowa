@@ -5,7 +5,7 @@ class CostsRepository {
   Stream<List<CostModel>> getCostsStream() {
     return FirebaseFirestore.instance
         .collection('costs')
-        .orderBy('release_date')
+        .orderBy('date')
         .snapshots()
         .map((querySnapshot) {
       return querySnapshot.docs.map(
@@ -14,7 +14,7 @@ class CostsRepository {
             // amount: doc['amount'] ,
             id: doc.id,
             title: doc['title'],
-            releaseDate: (doc['release_date'] as Timestamp).toDate(),
+            date: (doc['date'] as Timestamp).toDate(),
           );
         },
       ).toList();
@@ -27,7 +27,7 @@ class CostsRepository {
 
   Future<void> add(
     String title,
-    DateTime releaseDate,
+    DateTime date,
     // double amount,
   ) async {
     {
@@ -35,7 +35,7 @@ class CostsRepository {
       await FirebaseFirestore.instance.collection('costs').add(
         {
           'title': title,
-          'release_date': releaseDate,
+          'date': date,
           // 'amount': amount,
         },
       );

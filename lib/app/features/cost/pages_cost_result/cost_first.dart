@@ -135,7 +135,7 @@ class _ListViewCost extends StatelessWidget {
                         ),
                         const SizedBox(height: 10),
                         Text(
-                          costModel.releaseDateFormatted(),
+                          costModel.dateFormatted(),
                         ),
                       ],
                     ),
@@ -148,15 +148,14 @@ class _ListViewCost extends StatelessWidget {
                   margin: const EdgeInsets.all(10),
                   padding: const EdgeInsets.all(10),
                   child: Column(
-                    children: [
+                    children: const [
                       Text(
-                        costModel.daysLeft(),
-                        style: const TextStyle(
+                        ' 500 zł',
+                        style: TextStyle(
                           fontSize: 20.0,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      const Text('pozostało dni'),
                     ],
                   ),
                 ),
