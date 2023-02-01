@@ -1,9 +1,16 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:moja_budowa/models/task_model.dart';
 
 class TasksRepository {
   Stream<List<TaskModel>> getTasksStream() {
+    final userID = FirebaseAuth.instance.currentUser?.uid;
+    if (userID == null) {
+      throw Exception('Jesteś niezalogowany');
+    }
     return FirebaseFirestore.instance
+        .collection('users')
+        .doc(userID)
         .collection('tasks')
         .orderBy('title')
         .snapshots()
@@ -18,11 +25,28 @@ class TasksRepository {
   }
 
   Future<void> delete({required String id}) async {
-    return FirebaseFirestore.instance.collection('tasks').doc(id).delete();
+    final userID = FirebaseAuth.instance.currentUser?.uid;
+    if (userID == null) {
+      throw Exception('Jesteś niezalogowany');
+    }
+    return FirebaseFirestore.instance
+        .collection('users')
+        .doc(userID)
+        .collection('tasks')
+        .doc(id)
+        .delete();
   }
 
   Future<void> add(String title) async {
-    await FirebaseFirestore.instance.collection('tasks').add(
+    final userID = FirebaseAuth.instance.currentUser?.uid;
+    if (userID == null) {
+      throw Exception('Jesteś niezalogowany');
+    }
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(userID)
+        .collection('tasks')
+        .add(
       {
         'title': title,
       },
