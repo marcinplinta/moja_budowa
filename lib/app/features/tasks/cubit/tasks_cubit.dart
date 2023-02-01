@@ -58,7 +58,7 @@ class TasksCubit extends Cubit<TasksState> {
 
   Future<void> add({required String title}) async {
     try {
-      await _tasksRepository.add('title');
+      await _tasksRepository.add(title);
     } catch (error) {
       TasksState(
         tasks: const [],
