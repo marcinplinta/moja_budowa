@@ -7,21 +7,21 @@ import 'package:moja_budowa/app/features/tasks/tasks_page.dart';
 import 'package:moja_budowa/app/features/cost/cost_page.dart';
 import 'package:moja_budowa/app/features/foto/foto_page.dart';
 
-import 'package:moja_budowa/app/features/events/events_page.dart';
+import 'package:moja_budowa/app/features/event/event_page.dart';
 import 'package:moja_budowa/app/features/login/profile_page.dart';
 import 'package:moja_budowa/app/features/plan/plan_page/plan_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({
     Key? key,
-    // required this.user,
+    required this.user,
   }) : super(key: key);
-  // final User user;
+  final User user;
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<HomePage> createState() => HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class HomePageState extends State<HomePage> {
   var currentIndex = 1;
 
   @override
@@ -35,8 +35,8 @@ class _HomePageState extends State<HomePage> {
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (_) => ProfilPage(
-                    email: 'jesteś zalogowany jako gość',
-                    // email: widget.user.email,
+                    // email: 'jesteś zalogowany jako gość',
+                    email: widget.user.email,
                   ),
                 ),
               );
@@ -93,7 +93,7 @@ class _HomePageState extends State<HomePage> {
                 onPressed: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: (_) => const EventsPage(),
+                      builder: (_) => const EventPage(),
                     ),
                   );
                 },

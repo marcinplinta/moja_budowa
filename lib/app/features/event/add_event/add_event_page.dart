@@ -1,30 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
-import 'package:moja_budowa/app/features/cost/pages_add/cubit/add_first_cubit.dart';
-import 'package:moja_budowa/repositories/costs_repository.dart';
+import 'package:moja_budowa/app/features/event/add_event/cubit/addevent_cubit.dart';
+import 'package:moja_budowa/repositories/events_repository.dart';
 
-class AddFirst extends StatefulWidget {
-  const AddFirst({
+class AddEventPage extends StatefulWidget {
+  const AddEventPage({
     Key? key,
   }) : super(key: key);
 
   @override
-  State<AddFirst> createState() => _AddFirstState();
+  State<AddEventPage> createState() => _AddeventState();
 }
 
-class _AddFirstState extends State<AddFirst> {
+class _AddeventState extends State<AddEventPage> {
   String? _title;
-
-  DateTime? _date;
-  // double? _amount;
+  DateTime? _releaseDate;
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => AddFirstCubit(CostsRepository()),
-      child: BlocListener<AddFirstCubit, AddFirstState>(
+      create: (context) => AddeventCubit(EventsRepository()),
+      child: BlocListener<AddeventCubit, AddeventState>(
         listener: (context, state) {
           if (state.saved) {
             Navigator.of(context).pop();
@@ -38,22 +35,19 @@ class _AddFirstState extends State<AddFirst> {
             );
           }
         },
-        child: BlocBuilder<AddFirstCubit, AddFirstState>(
+        child: BlocBuilder<AddeventCubit, AddeventState>(
           builder: (context, state) {
             return Scaffold(
               appBar: AppBar(
-                title: const Text('Koszty dokumentacji'),
+                title: const Text('Dodaj wydarzenie'),
                 actions: [
                   IconButton(
-                    onPressed: _title == null || _date == null
-                        // ||
-                        // _amount == null
+                    onPressed: _title == null || _releaseDate == null
                         ? null
                         : () {
-                            context.read<AddFirstCubit>().add(
+                            context.read<AddeventCubit>().add(
                                   _title!,
-                                  _date!,
-                                  // _amount!,
+                                  _releaseDate!,
                                 );
                           },
                     icon: const Icon(Icons.check),
@@ -66,19 +60,14 @@ class _AddFirstState extends State<AddFirst> {
                     _title = newValue;
                   });
                 },
-                // onAmountChanged: (newValue) {
-                //   setState(() {
-                //     _amount = newValue;
-                //   });
-                // },
                 onDateChanged: (newValue) {
                   setState(() {
-                    _date = newValue;
+                    _releaseDate = newValue;
                   });
                 },
-                selectedDateFormatted: _date == null
+                selectedDateFormatted: _releaseDate == null
                     ? null
-                    : DateFormat.yMMMMEEEEd().format(_date!),
+                    : DateFormat.yMMMMEEEEd().format(_releaseDate!),
               ),
             );
           },
@@ -92,7 +81,6 @@ class _AddPageBody extends StatelessWidget {
   const _AddPageBody({
     Key? key,
     required this.onTitleChanged,
-    // required this.onAmountChanged,
     required this.onDateChanged,
     this.selectedDateFormatted,
   }) : super(key: key);
@@ -100,7 +88,7 @@ class _AddPageBody extends StatelessWidget {
   final Function(String) onTitleChanged;
   final Function(DateTime?) onDateChanged;
   final String? selectedDateFormatted;
-  // final Function(double) onAmountChanged;
+
   @override
   Widget build(BuildContext context) {
     return ListView(
@@ -113,24 +101,10 @@ class _AddPageBody extends StatelessWidget {
           onChanged: onTitleChanged,
           decoration: const InputDecoration(
             border: OutlineInputBorder(),
-            hintText: 'adaptacja projektu',
-            label: Text('rodzaj usługi/materiału'),
+            hintText: 'przyjazd koparki',
+            label: Text('Wydarzenie'),
           ),
         ),
-        SizedBox(height: 10),
-//         TextField(
-//           inputFormatters: [
-//             FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
-// // for version 2 and greater youcan also use this
-//             FilteringTextInputFormatter.digitsOnly
-//           ],
-//           keyboardType: TextInputType.number,
-//           decoration: const InputDecoration(
-//             border: OutlineInputBorder(),
-//             hintText: 'cena',
-//             label: Text('podaj kwotę'),
-//           ),
-//         ),
         const SizedBox(height: 20),
         ElevatedButton(
           onPressed: () async {
@@ -144,7 +118,7 @@ class _AddPageBody extends StatelessWidget {
             );
             onDateChanged(selectedDate);
           },
-          child: Text(selectedDateFormatted ?? ' data zakupu'),
+          child: Text(selectedDateFormatted ?? 'Wybierz datę wydarzenia'),
         ),
       ],
     );

@@ -1,13 +1,12 @@
 part of 'tasks_cubit.dart';
 
-@immutable
 class TasksState {
-  final List<QueryDocumentSnapshot<Object?>> documents;
-  final bool isLoading;
-  final String errorMessage;
-  const TasksState({
-    required this.documents,
+  TasksState({
+    this.tasks = const [],
     required this.isLoading,
     required this.errorMessage,
   });
+  final List<TaskModel> tasks;
+  final bool isLoading;
+  final String errorMessage;
 }

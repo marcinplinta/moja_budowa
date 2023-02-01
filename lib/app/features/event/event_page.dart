@@ -1,56 +1,51 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:moja_budowa/app/features/cost/cost_result/cubit/cost_result_first_cubit.dart';
-import 'package:moja_budowa/app/features/cost/pages_add/add_first.dart';
-import 'package:moja_budowa/models/cost_model.dart';
-import 'package:moja_budowa/repositories/costs_repository.dart';
+import 'package:moja_budowa/app/features/event/add_event/add_event_page.dart';
+import 'package:moja_budowa/app/features/event/cubit/event_cubit.dart';
+import 'package:moja_budowa/models/event_model.dart';
+import 'package:moja_budowa/repositories/events_repository.dart';
 
-class CostFirst extends StatefulWidget {
-  const CostFirst({
+class EventPage extends StatelessWidget {
+  const EventPage({
     Key? key,
   }) : super(key: key);
 
   @override
-  State<CostFirst> createState() => _CostFirstState();
-}
-
-class _CostFirstState extends State<CostFirst> {
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Koszty dokumentacji'),
+        title: const Text('Wydarzenia'),
       ),
-      body: const _CostPageBody(),
+      body: const EventPageBody(),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (context) => const AddFirst(),
+              builder: (context) => const AddEventPage(),
               fullscreenDialog: true,
             ),
           );
         },
-        child: const Icon(Icons.edit),
+        child: const Icon(Icons.add),
       ),
       backgroundColor: const Color.fromARGB(235, 213, 228, 241),
     );
   }
 }
 
-class _CostPageBody extends StatelessWidget {
-  const _CostPageBody({
+class EventPageBody extends StatelessWidget {
+  const EventPageBody({
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => CostResultFirstCubit(CostsRepository())..start(),
-      child: BlocBuilder<CostResultFirstCubit, CostResultFirstState>(
+      create: (context) => EventCubit(EventsRepository())..start(),
+      child: BlocBuilder<EventCubit, EventState>(
         builder: (context, state) {
-          final costModels = state.costs;
-          if (costModels.isEmpty) {
+          final eventModels = state.events;
+          if (eventModels.isEmpty) {
             return const SizedBox.shrink();
           }
           return ListView(
@@ -58,9 +53,9 @@ class _CostPageBody extends StatelessWidget {
               vertical: 20,
             ),
             children: [
-              for (final costModel in costModels)
+              for (final eventModel in eventModels)
                 Dismissible(
-                  key: ValueKey(costModel.id),
+                  key: ValueKey(eventModel.id),
                   background: const DecoratedBox(
                     decoration: BoxDecoration(
                       color: Colors.red,
@@ -81,11 +76,11 @@ class _CostPageBody extends StatelessWidget {
                   },
                   onDismissed: (direction) {
                     context
-                        .read<CostResultFirstCubit>()
-                        .remove(documentID: costModel.id);
+                        .read<EventCubit>()
+                        .remove(documentID: eventModel.id);
                   },
-                  child: _ListViewCost(
-                    costModel: costModel,
+                  child: _ListViewEvent(
+                    eventModel: eventModel,
                   ),
                 ),
             ],
@@ -96,13 +91,13 @@ class _CostPageBody extends StatelessWidget {
   }
 }
 
-class _ListViewCost extends StatelessWidget {
-  const _ListViewCost({
+class _ListViewEvent extends StatelessWidget {
+  const _ListViewEvent({
     Key? key,
-    required this.costModel,
+    required this.eventModel,
   }) : super(key: key);
 
-  final CostModel costModel;
+  final EventModel eventModel;
 
   @override
   Widget build(BuildContext context) {
@@ -127,7 +122,7 @@ class _ListViewCost extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         Text(
-                          costModel.title,
+                          eventModel.title,
                           style: const TextStyle(
                             fontSize: 20.0,
                             fontWeight: FontWeight.bold,
@@ -135,7 +130,7 @@ class _ListViewCost extends StatelessWidget {
                         ),
                         const SizedBox(height: 10),
                         Text(
-                          costModel.dateFormatted(),
+                          eventModel.releaseDateFormatted(),
                         ),
                       ],
                     ),
@@ -148,14 +143,15 @@ class _ListViewCost extends StatelessWidget {
                   margin: const EdgeInsets.all(10),
                   padding: const EdgeInsets.all(10),
                   child: Column(
-                    children: const [
+                    children: [
                       Text(
-                        ' 500 zł',
-                        style: TextStyle(
+                        eventModel.daysLeft(),
+                        style: const TextStyle(
                           fontSize: 20.0,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
+                      const Text('pozostało dni'),
                     ],
                   ),
                 ),
