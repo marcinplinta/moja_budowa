@@ -118,19 +118,19 @@ class _AddPageBody extends StatelessWidget {
           ),
         ),
         SizedBox(height: 10),
-//         TextField(
-//           inputFormatters: [
-//             FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
-// // for version 2 and greater youcan also use this
-//             FilteringTextInputFormatter.digitsOnly
-//           ],
-//           keyboardType: TextInputType.number,
-//           decoration: const InputDecoration(
-//             border: OutlineInputBorder(),
-//             hintText: 'cena',
-//             label: Text('podaj kwotę'),
-//           ),
-//         ),
+        TextField(
+          inputFormatters: [
+            FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+// for version 2 and greater youcan also use this
+            FilteringTextInputFormatter.digitsOnly
+          ],
+          keyboardType: TextInputType.number,
+          decoration: const InputDecoration(
+            border: OutlineInputBorder(),
+            hintText: 'cena',
+            label: Text('podaj kwotę'),
+          ),
+        ),
         const SizedBox(height: 20),
         ElevatedButton(
           onPressed: () async {

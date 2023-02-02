@@ -35,7 +35,6 @@ class HomePageState extends State<HomePage> {
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (_) => ProfilPage(
-                    // email: 'jesteś zalogowany jako gość',
                     email: widget.user.email,
                   ),
                 ),
