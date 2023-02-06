@@ -148,10 +148,10 @@ class _ListViewCost extends StatelessWidget {
                   margin: const EdgeInsets.all(10),
                   padding: const EdgeInsets.all(10),
                   child: Column(
-                    children: const [
+                    children: [
                       Text(
-                        ' 500 zł',
-                        style: TextStyle(
+                        costModel.amount.toString(),
+                        style: const TextStyle(
                           fontSize: 20.0,
                           fontWeight: FontWeight.bold,
                         ),

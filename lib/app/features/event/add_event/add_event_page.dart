@@ -16,6 +16,7 @@ class AddEventPage extends StatefulWidget {
 class _AddeventState extends State<AddEventPage> {
   String? _title;
   DateTime? _releaseDate;
+  TimeOfDay? _releaseTime;
 
   @override
   Widget build(BuildContext context) {
@@ -42,13 +43,14 @@ class _AddeventState extends State<AddEventPage> {
                 title: const Text('Dodaj wydarzenie'),
                 actions: [
                   IconButton(
-                    onPressed: _title == null || _releaseDate == null
+                    onPressed: _title == null ||
+                            _releaseDate == null ||
+                            _releaseTime == null
                         ? null
                         : () {
-                            context.read<AddeventCubit>().add(
-                                  _title!,
-                                  _releaseDate!,
-                                );
+                            context
+                                .read<AddeventCubit>()
+                                .add(_title!, _releaseDate!, _releaseTime!);
                           },
                     icon: const Icon(Icons.check),
                   ),
@@ -60,6 +62,12 @@ class _AddeventState extends State<AddEventPage> {
                     _title = newValue;
                   });
                 },
+                onTimeChanged: (newValue) {
+                  setState(() {
+                    _releaseTime = newValue;
+                  });
+                },
+                selectedTimeFormatted: _releaseTime?.toString(),
                 onDateChanged: (newValue) {
                   setState(() {
                     _releaseDate = newValue;
@@ -83,11 +91,15 @@ class _AddPageBody extends StatelessWidget {
     required this.onTitleChanged,
     required this.onDateChanged,
     this.selectedDateFormatted,
+    required this.onTimeChanged,
+    required this.selectedTimeFormatted,
   }) : super(key: key);
 
   final Function(String) onTitleChanged;
   final Function(DateTime?) onDateChanged;
   final String? selectedDateFormatted;
+  final Function(TimeOfDay?) onTimeChanged;
+  final String? selectedTimeFormatted;
 
   @override
   Widget build(BuildContext context) {
@@ -119,6 +131,21 @@ class _AddPageBody extends StatelessWidget {
             onDateChanged(selectedDate);
           },
           child: Text(selectedDateFormatted ?? 'Wybierz datę wydarzenia'),
+        ),
+        const SizedBox(height: 10),
+        ElevatedButton(
+          onPressed: () async {
+            final selectedTime = await showTimePicker(
+              context: context,
+              initialTime: TimeOfDay.now(),
+              cancelText: 'zamknij',
+              confirmText: 'zapisz',
+              helpText: 'wybierz godzinę',
+            );
+
+            onTimeChanged(selectedTime);
+          },
+          child: Text(selectedTimeFormatted ?? 'Dodaj godzinę'),
         ),
       ],
     );

@@ -92,7 +92,7 @@ class ListCostWidget extends StatelessWidget {
             ),
             margin: const EdgeInsets.all(5),
             padding: const EdgeInsets.all(15),
-            child: Text(' 1000 zł'),
+            child: const Text(' 1000 zł'),
           ),
         ],
       ),

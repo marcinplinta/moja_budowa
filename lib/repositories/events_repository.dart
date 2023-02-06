@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:moja_budowa/models/event_model.dart';
 
 class EventsRepository {
@@ -43,6 +44,7 @@ class EventsRepository {
   Future<void> add(
     String title,
     DateTime releaseDate,
+    TimeOfDay releaseTime,
   ) async {
     final userID = FirebaseAuth.instance.currentUser?.uid;
     if (userID == null) {
@@ -57,7 +59,13 @@ class EventsRepository {
           .add(
         {
           'title': title,
-          'release_date': releaseDate,
+          'release_date': DateTime(
+            releaseDate.year,
+            releaseDate.month,
+            releaseDate.day,
+            releaseTime.hour,
+            releaseTime.minute,
+          )
         },
       );
     }

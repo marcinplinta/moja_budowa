@@ -18,7 +18,7 @@ class _AddFirstState extends State<AddFirst> {
   String? _title;
 
   DateTime? _date;
-  // double? _amount;
+  double? _amount;
 
   @override
   Widget build(BuildContext context) {
@@ -45,17 +45,16 @@ class _AddFirstState extends State<AddFirst> {
                 title: const Text('Koszty dokumentacji'),
                 actions: [
                   IconButton(
-                    onPressed: _title == null || _date == null
-                        // ||
-                        // _amount == null
-                        ? null
-                        : () {
-                            context.read<AddFirstCubit>().add(
-                                  _title!,
-                                  _date!,
-                                  // _amount!,
-                                );
-                          },
+                    onPressed:
+                        _title == null || _date == null || _amount == null
+                            ? null
+                            : () {
+                                context.read<AddFirstCubit>().add(
+                                      _title!,
+                                      _date!,
+                                      _amount!,
+                                    );
+                              },
                     icon: const Icon(Icons.check),
                   ),
                 ],
@@ -66,11 +65,12 @@ class _AddFirstState extends State<AddFirst> {
                     _title = newValue;
                   });
                 },
-                // onAmountChanged: (newValue) {
-                //   setState(() {
-                //     _amount = newValue;
-                //   });
-                // },
+                onAmountChanged: (newValue) {
+                  setState(() {
+                    _amount = newValue;
+                  });
+                },
+                value: _amount,
                 onDateChanged: (newValue) {
                   setState(() {
                     _date = newValue;
@@ -92,15 +92,19 @@ class _AddPageBody extends StatelessWidget {
   const _AddPageBody({
     Key? key,
     required this.onTitleChanged,
-    // required this.onAmountChanged,
+    required this.onAmountChanged,
     required this.onDateChanged,
     this.selectedDateFormatted,
+    double? value,
+    this.selectedAmountFormatted,
   }) : super(key: key);
 
   final Function(String) onTitleChanged;
   final Function(DateTime?) onDateChanged;
   final String? selectedDateFormatted;
-  // final Function(double) onAmountChanged;
+  final Function(double) onAmountChanged;
+  final String? selectedAmountFormatted;
+
   @override
   Widget build(BuildContext context) {
     return ListView(
@@ -117,8 +121,11 @@ class _AddPageBody extends StatelessWidget {
             label: Text('rodzaj usługi/materiału'),
           ),
         ),
-        SizedBox(height: 10),
+        const SizedBox(height: 10),
         TextField(
+          onChanged: ((value) {
+            onAmountChanged(double.parse(value));
+          }),
           inputFormatters: [
             FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
 // for version 2 and greater youcan also use this
