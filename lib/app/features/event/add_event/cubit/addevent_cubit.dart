@@ -7,7 +7,7 @@ import 'package:moja_budowa/repositories/events_repository.dart';
 part 'addevent_state.dart';
 
 class AddeventCubit extends Cubit<AddeventState> {
-  AddeventCubit(this._eventsRepository) : super(AddeventState());
+  AddeventCubit(this._eventsRepository) : super(const AddeventState());
 
   final EventsRepository _eventsRepository;
 
@@ -24,7 +24,7 @@ class AddeventCubit extends Cubit<AddeventState> {
       );
       // throw Exception('Coś poszło nie tak');
 
-      emit(AddeventState(saved: true));
+      emit(const AddeventState(saved: true));
     } catch (error) {
       emit(AddeventState(errorMessage: error.toString()));
     }

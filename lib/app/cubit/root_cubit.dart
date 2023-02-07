@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:meta/meta.dart';
 import 'package:moja_budowa/app/core/enums.dart';
 import 'package:moja_budowa/repositories/login_repository.dart';
 
