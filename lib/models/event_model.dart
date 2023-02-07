@@ -13,8 +13,8 @@ class EventModel {
   final String title;
   final DateTime releaseDate;
   TimeOfDay? releaseTime;
-  String daysLeft() {
-    return releaseDate.difference(DateTime.now()).inDays.toString();
+  int daysLeft() {
+    return releaseDate.difference(DateTime.now()).inDays + 1;
   }
 
   String releaseDateFormatted() {

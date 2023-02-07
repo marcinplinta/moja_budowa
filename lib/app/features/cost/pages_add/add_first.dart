@@ -96,14 +96,12 @@ class _AddPageBody extends StatelessWidget {
     required this.onDateChanged,
     this.selectedDateFormatted,
     double? value,
-    this.selectedAmountFormatted,
   }) : super(key: key);
 
   final Function(String) onTitleChanged;
   final Function(DateTime?) onDateChanged;
   final String? selectedDateFormatted;
   final Function(double) onAmountChanged;
-  final String? selectedAmountFormatted;
 
   @override
   Widget build(BuildContext context) {

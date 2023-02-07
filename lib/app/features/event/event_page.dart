@@ -145,7 +145,7 @@ class _ListViewEvent extends StatelessWidget {
                   child: Column(
                     children: [
                       Text(
-                        eventModel.daysLeft(),
+                        eventModel.daysLeft().toString(),
                         style: const TextStyle(
                           fontSize: 20.0,
                           fontWeight: FontWeight.bold,
