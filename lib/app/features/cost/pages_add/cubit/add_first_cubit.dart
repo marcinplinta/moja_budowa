@@ -11,7 +11,7 @@ class AddFirstCubit extends Cubit<AddFirstState> {
   Future<void> add(
     String title,
     DateTime date,
-    double amount,
+    int amount,
   ) async {
     try {
       await _costsRepository.add(title, date, amount);

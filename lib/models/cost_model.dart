@@ -11,7 +11,7 @@ class CostModel {
   final String id;
   final String title;
   final DateTime date;
-  final double amount;
+  final int amount;
 
   String dateFormatted() {
     return DateFormat.yMMMEd().format(date);

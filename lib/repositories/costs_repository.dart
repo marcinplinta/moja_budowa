@@ -18,7 +18,7 @@ class CostsRepository {
       return querySnapshot.docs.map(
         (doc) {
           return CostModel(
-            amount: double.parse(doc['amount'].toString()),
+            amount: int.parse(doc['amount'].toString()),
             id: doc.id,
             title: doc['title'],
             date: (doc['date'] as Timestamp).toDate(),
@@ -44,7 +44,7 @@ class CostsRepository {
   Future<void> add(
     String title,
     DateTime date,
-    double amount,
+    int amount,
   ) async {
     final userID = FirebaseAuth.instance.currentUser?.uid;
     if (userID == null) {

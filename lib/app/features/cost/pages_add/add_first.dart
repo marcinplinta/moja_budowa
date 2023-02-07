@@ -18,7 +18,7 @@ class _AddFirstState extends State<AddFirst> {
   String? _title;
 
   DateTime? _date;
-  double? _amount;
+  int? _amount;
 
   @override
   Widget build(BuildContext context) {
@@ -95,13 +95,13 @@ class _AddPageBody extends StatelessWidget {
     required this.onAmountChanged,
     required this.onDateChanged,
     this.selectedDateFormatted,
-    double? value,
+    int? value,
   }) : super(key: key);
 
   final Function(String) onTitleChanged;
   final Function(DateTime?) onDateChanged;
   final String? selectedDateFormatted;
-  final Function(double) onAmountChanged;
+  final Function(int) onAmountChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -122,7 +122,7 @@ class _AddPageBody extends StatelessWidget {
         const SizedBox(height: 10),
         TextField(
           onChanged: ((value) {
-            onAmountChanged(double.parse(value));
+            onAmountChanged(int.parse(value));
           }),
           inputFormatters: [
             FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
