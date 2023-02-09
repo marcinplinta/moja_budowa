@@ -1,13 +1,14 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:moja_budowa/app/core/enums.dart';
 import 'package:moja_budowa/models/event_model.dart';
 import 'package:moja_budowa/repositories/events_repository.dart';
 
 part 'event_state.dart';
 
 class EventCubit extends Cubit<EventState> {
-  EventCubit(this._eventsRepository) : super(const EventState());
+  EventCubit(this._eventsRepository) : super(EventState());
 
   final EventsRepository _eventsRepository;
 
@@ -16,11 +17,21 @@ class EventCubit extends Cubit<EventState> {
   Future<void> start() async {
     _streamSubscription = _eventsRepository.getEventsStream().listen(
       (events) {
-        emit(EventState(events: events));
+        emit(
+          EventState(
+            events: events,
+            status: Status.success,
+          ),
+        );
       },
     )..onError(
         (error) {
-          emit(const EventState(loadingErrorOccured: true));
+          emit(
+            EventState(
+              status: Status.error,
+              errorMessage: error.toString(),
+            ),
+          );
         },
       );
   }
@@ -30,7 +41,10 @@ class EventCubit extends Cubit<EventState> {
       await _eventsRepository.delete(id: documentID);
     } catch (error) {
       emit(
-        const EventState(removingErrorOccured: true),
+        EventState(
+          status: Status.error,
+          errorMessage: error.toString(),
+        ),
       );
       start();
     }
