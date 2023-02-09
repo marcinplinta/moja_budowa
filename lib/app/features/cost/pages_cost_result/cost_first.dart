@@ -76,7 +76,6 @@ class _CostPageBody extends StatelessWidget {
                     ),
                   ),
                   confirmDismiss: (direction) async {
-                    // only from right to left
                     return direction == DismissDirection.endToStart;
                   },
                   onDismissed: (direction) {
@@ -113,7 +112,8 @@ class _ListViewCost extends StatelessWidget {
       ),
       child: Container(
         decoration: const BoxDecoration(
-          color: Colors.black12,
+          borderRadius: BorderRadius.all(Radius.circular(10)),
+          color: Color.fromARGB(157, 33, 148, 168),
         ),
         child: Column(
           children: [
@@ -129,7 +129,7 @@ class _ListViewCost extends StatelessWidget {
                         Text(
                           costModel.title,
                           style: const TextStyle(
-                            fontSize: 20.0,
+                            fontSize: 16.0,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -141,31 +141,37 @@ class _ListViewCost extends StatelessWidget {
                     ),
                   ),
                 ),
-                Container(
-                  decoration: const BoxDecoration(
-                    color: Colors.white70,
-                  ),
-                  margin: const EdgeInsets.all(10),
-                  padding: const EdgeInsets.all(10),
-                  child: Row(
-                    children: [
-                      Text(
-                        costModel.amount.toString(),
-                        style: const TextStyle(
-                          fontSize: 20.0,
-                          fontWeight: FontWeight.bold,
-                        ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Container(
+                      decoration: const BoxDecoration(
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                        color: Color.fromARGB(240, 211, 248, 3),
                       ),
-                      const SizedBox(width: 5),
-                      const Text(
-                        'zł',
-                        style: TextStyle(
-                          fontSize: 20.0,
-                          fontWeight: FontWeight.bold,
-                        ),
+                      margin: const EdgeInsets.all(10),
+                      padding: const EdgeInsets.all(10),
+                      child: Row(
+                        children: [
+                          Text(
+                            costModel.amount.toString(),
+                            style: const TextStyle(
+                              fontSize: 18.0,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          const SizedBox(width: 5),
+                          const Text(
+                            'zł',
+                            style: TextStyle(
+                              fontSize: 18.0,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ],
             ),

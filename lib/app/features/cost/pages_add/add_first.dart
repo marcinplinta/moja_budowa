@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:moja_budowa/app/features/cost/pages_add/cubit/add_first_cubit.dart';
 import 'package:moja_budowa/repositories/costs_repository.dart';
@@ -41,6 +42,7 @@ class _AddFirstState extends State<AddFirst> {
         child: BlocBuilder<AddFirstCubit, AddFirstState>(
           builder: (context, state) {
             return Scaffold(
+              backgroundColor: const Color.fromARGB(235, 213, 228, 241),
               appBar: AppBar(
                 title: const Text('Koszty dokumentacji'),
                 actions: [
@@ -78,7 +80,7 @@ class _AddFirstState extends State<AddFirst> {
                 },
                 selectedDateFormatted: _date == null
                     ? null
-                    : DateFormat.yMMMMEEEEd().format(_date!),
+                    : DateFormat("dd.MM.yyyy").format(_date!),
               ),
             );
           },
@@ -112,6 +114,8 @@ class _AddPageBody extends StatelessWidget {
       ),
       children: [
         TextField(
+          minLines: 1,
+          maxLines: 4,
           onChanged: onTitleChanged,
           decoration: const InputDecoration(
             border: OutlineInputBorder(),
@@ -138,6 +142,13 @@ class _AddPageBody extends StatelessWidget {
         ),
         const SizedBox(height: 20),
         ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(16),
+            ),
+            fixedSize: const Size(180, 40),
+            backgroundColor: const Color.fromARGB(255, 162, 222, 240),
+          ),
           onPressed: () async {
             final selectedDate = await showDatePicker(
               context: context,
@@ -149,7 +160,10 @@ class _AddPageBody extends StatelessWidget {
             );
             onDateChanged(selectedDate);
           },
-          child: Text(selectedDateFormatted ?? ' data zakupu'),
+          child: Text(
+            selectedDateFormatted ?? ' data zakupu',
+            style: GoogleFonts.kanit(color: Colors.black, fontSize: 16),
+          ),
         ),
       ],
     );

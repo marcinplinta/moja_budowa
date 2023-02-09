@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:moja_budowa/app/cubit/root_cubit.dart';
+import 'package:moja_budowa/app/cubit/auth_cubit.dart';
 import 'package:moja_budowa/app/features/home/home_page.dart';
 import 'package:moja_budowa/app/features/start/start_page.dart';
 import 'package:moja_budowa/repositories/login_repository.dart';
@@ -28,8 +28,8 @@ class RootPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => RootCubit(LoginRepository())..start(),
-      child: BlocBuilder<RootCubit, RootState>(
+      create: (context) => AuthCubit(LoginRepository())..start(),
+      child: BlocBuilder<AuthCubit, AuthState>(
         builder: (context, state) {
           final user = state.user;
           if (user == null) {

@@ -5,10 +5,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:moja_budowa/app/core/enums.dart';
 import 'package:moja_budowa/repositories/login_repository.dart';
 
-part 'root_state.dart';
+part 'auth_state.dart';
 
-class RootCubit extends Cubit<RootState> {
-  RootCubit(this._loginRepository) : super(const RootState());
+class AuthCubit extends Cubit<AuthState> {
+  AuthCubit(this._loginRepository) : super(const AuthState());
 
   final LoginRepository _loginRepository;
 
@@ -17,11 +17,11 @@ class RootCubit extends Cubit<RootState> {
     try {
       await _loginRepository.register(email: email, password: password);
       emit(
-        const RootState(status: Status.success),
+        const AuthState(status: Status.success),
       );
     } catch (error) {
       emit(
-        RootState(
+        AuthState(
           user: null,
           status: Status.error,
           errorMessage: error.toString(),
@@ -34,11 +34,11 @@ class RootCubit extends Cubit<RootState> {
     try {
       await _loginRepository.signIn(email: email, password: password);
       emit(
-        const RootState(status: Status.success),
+        const AuthState(status: Status.success),
       );
     } catch (error) {
       emit(
-        RootState(
+        AuthState(
           user: null,
           status: Status.error,
           errorMessage: error.toString(),
@@ -50,20 +50,20 @@ class RootCubit extends Cubit<RootState> {
   Future<void> signOut() async {
     _loginRepository.signOut();
     emit(
-      const RootState(status: Status.success),
+      const AuthState(status: Status.success),
     );
   }
 
   Future<void> signInAn() async {
     _loginRepository.signInAn();
     emit(
-      const RootState(status: Status.success),
+      const AuthState(status: Status.success),
     );
   }
 
   Future<void> creatingAccount() async {
     emit(
-      const RootState(
+      const AuthState(
         user: null,
         isCreatingAccount: true,
       ),
@@ -72,7 +72,7 @@ class RootCubit extends Cubit<RootState> {
 
   Future<void> notCreatingAccount() async {
     emit(
-      const RootState(
+      const AuthState(
         user: null,
         isCreatingAccount: false,
       ),
@@ -87,7 +87,7 @@ class RootCubit extends Cubit<RootState> {
 
   Future<void> start() async {
     emit(
-      const RootState(
+      const AuthState(
         user: null,
         status: Status.initial,
         isCreatingAccount: false,
@@ -98,14 +98,14 @@ class RootCubit extends Cubit<RootState> {
     _streamSubscription = _loginRepository.authState().listen(
       (user) {
         emit(
-          RootState(
+          AuthState(
             user: user,
           ),
         );
       },
     )..onError(
         (error) {
-          emit(RootState(
+          emit(AuthState(
             status: Status.error,
             errorMessage: error.toString(),
           ));

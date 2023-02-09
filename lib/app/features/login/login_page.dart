@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:moja_budowa/app/cubit/root_cubit.dart';
+import 'package:moja_budowa/app/cubit/auth_cubit.dart';
 import 'package:moja_budowa/app/features/login/reset_password.dart';
 import 'package:moja_budowa/repositories/login_repository.dart';
 
@@ -17,8 +17,8 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => RootCubit(LoginRepository()),
-      child: BlocBuilder<RootCubit, RootState>(
+      create: (context) => AuthCubit(LoginRepository()),
+      child: BlocBuilder<AuthCubit, AuthState>(
         builder: (context, state) {
           return Scaffold(
             backgroundColor: const Color.fromARGB(235, 213, 228, 241),
@@ -102,15 +102,13 @@ class LoginPage extends StatelessWidget {
                               ),
                               onPressed: () async {
                                 if (state.isCreatingAccount == true) {
-                                  // rejestracja
-                                  await context.read<RootCubit>().register(
+                                  await context.read<AuthCubit>().register(
                                         email: emailController.text,
                                         password: passwordController.text,
                                       );
                                   Navigator.of(context).pop();
                                 } else {
-                                  // logowanie
-                                  await context.read<RootCubit>().signIn(
+                                  await context.read<AuthCubit>().signIn(
                                       email: emailController.text,
                                       password: passwordController.text);
                                   Navigator.of(context).pop();
@@ -133,7 +131,7 @@ class LoginPage extends StatelessWidget {
                               fontWeight: FontWeight.bold, fontSize: 18),
                         ),
                         onPressed: () {
-                          context.read<RootCubit>().creatingAccount();
+                          context.read<AuthCubit>().creatingAccount();
                         },
                       ),
                     ],
@@ -149,7 +147,7 @@ class LoginPage extends StatelessWidget {
                               fontWeight: FontWeight.bold, fontSize: 18),
                         ),
                         onPressed: () {
-                          context.read<RootCubit>().notCreatingAccount();
+                          context.read<AuthCubit>().notCreatingAccount();
                         },
                       ),
                     ],

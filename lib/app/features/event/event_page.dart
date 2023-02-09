@@ -48,6 +48,7 @@ class EventPageBody extends StatelessWidget {
           if (eventModels.isEmpty) {
             return const SizedBox.shrink();
           }
+
           return ListView(
             padding: const EdgeInsets.symmetric(
               vertical: 20,
@@ -108,7 +109,8 @@ class _ListViewEvent extends StatelessWidget {
       ),
       child: Container(
         decoration: const BoxDecoration(
-          color: Colors.black12,
+          borderRadius: BorderRadius.all(Radius.circular(20)),
+          color: Color.fromARGB(164, 6, 43, 124),
         ),
         child: Column(
           children: [
@@ -131,6 +133,9 @@ class _ListViewEvent extends StatelessWidget {
                         const SizedBox(height: 10),
                         Text(
                           eventModel.releaseDateFormatted(),
+                          style: const TextStyle(
+                            color: Color.fromARGB(242, 163, 250, 2),
+                          ),
                         ),
                       ],
                     ),
@@ -138,7 +143,8 @@ class _ListViewEvent extends StatelessWidget {
                 ),
                 Container(
                   decoration: const BoxDecoration(
-                    color: Colors.white70,
+                    borderRadius: BorderRadius.all(Radius.circular(20)),
+                    color: Color.fromARGB(251, 243, 6, 6),
                   ),
                   margin: const EdgeInsets.all(10),
                   padding: const EdgeInsets.all(10),

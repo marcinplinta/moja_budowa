@@ -20,4 +20,7 @@ class EventModel {
   String releaseDateFormatted() {
     return DateFormat("dd.MM.yyyy    HH:mm").format(releaseDate);
   }
+  // String releaseTimeFormatted() {
+  //   return DateFormat("HH:mm").format(releaseTime);
+  // }
 }

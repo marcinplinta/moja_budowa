@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:moja_budowa/app/cubit/root_cubit.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:moja_budowa/app/cubit/auth_cubit.dart';
 import 'package:moja_budowa/repositories/login_repository.dart';
 
 class ProfilPage extends StatelessWidget {
@@ -20,23 +21,38 @@ class ProfilPage extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.all(12.0),
         child: BlocProvider(
-          create: (context) => RootCubit(LoginRepository()),
-          child: BlocBuilder<RootCubit, RootState>(
+          create: (context) => AuthCubit(LoginRepository()),
+          child: BlocBuilder<AuthCubit, AuthState>(
             builder: (context, state) {
               return Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text('Jesteś zalogowany jako ${email ?? 'gość'}'),
+                    Text('Jesteś zalogowany jako ${email ?? 'gość'}',
+                        style: GoogleFonts.kanit(
+                            color: Colors.black, fontSize: 16)),
                     const SizedBox(
                       height: 10,
                     ),
                     ElevatedButton(
-                        onPressed: () {
-                          context.read<RootCubit>().singOut();
-                          Navigator.of(context).pop();
-                        },
-                        child: const Text('Wyloguj'))
+                      style: ElevatedButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(16),
+                        ),
+                        fixedSize: const Size(180, 40),
+                        backgroundColor:
+                            const Color.fromARGB(255, 162, 222, 240),
+                      ),
+                      onPressed: () {
+                        context.read<AuthCubit>().singOut();
+                        Navigator.of(context).pop();
+                      },
+                      child: Text(
+                        'Wyloguj',
+                        style: GoogleFonts.kanit(
+                            color: Colors.black, fontSize: 16),
+                      ),
+                    ),
                   ],
                 ),
               );

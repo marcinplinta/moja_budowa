@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:moja_budowa/app/cubit/root_cubit.dart';
+import 'package:moja_budowa/app/cubit/auth_cubit.dart';
 
 import 'package:moja_budowa/app/features/login/login_page.dart';
 
@@ -43,7 +43,7 @@ class StartPage extends StatelessWidget {
                     style: GoogleFonts.kanit(color: Colors.black, fontSize: 18),
                   ),
                   onPressed: () {
-                    context.read<RootCubit>().signInAn();
+                    context.read<AuthCubit>().signInAn();
                   },
                 ),
                 const SizedBox(height: 270),

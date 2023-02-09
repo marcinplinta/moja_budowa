@@ -14,6 +14,6 @@ class CostModel {
   final int amount;
 
   String dateFormatted() {
-    return DateFormat.yMMMEd().format(date);
+    return DateFormat("dd.MM.yyyy").format(date);
   }
 }

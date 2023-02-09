@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:moja_budowa/app/features/event/add_event/cubit/addevent_cubit.dart';
 import 'package:moja_budowa/repositories/events_repository.dart';
@@ -39,6 +40,7 @@ class _AddeventState extends State<AddEventPage> {
         child: BlocBuilder<AddeventCubit, AddeventState>(
           builder: (context, state) {
             return Scaffold(
+              backgroundColor: const Color.fromARGB(235, 213, 228, 241),
               appBar: AppBar(
                 title: const Text('Dodaj wydarzenie'),
                 actions: [
@@ -68,6 +70,9 @@ class _AddeventState extends State<AddEventPage> {
                   });
                 },
                 selectedTimeFormatted: _releaseTime?.toString(),
+                // selectedTimeFormatted: _releaseTime == null
+                //     ? null
+                //     : DateFormat("HH:mm").format(_releaseTime!),
                 onDateChanged: (newValue) {
                   setState(() {
                     _releaseDate = newValue;
@@ -75,7 +80,7 @@ class _AddeventState extends State<AddEventPage> {
                 },
                 selectedDateFormatted: _releaseDate == null
                     ? null
-                    : DateFormat.yMMMMEEEEd().format(_releaseDate!),
+                    : DateFormat("dd.MM.yyyy").format(_releaseDate!),
               ),
             );
           },
@@ -110,6 +115,8 @@ class _AddPageBody extends StatelessWidget {
       ),
       children: [
         TextField(
+          minLines: 1,
+          maxLines: 4,
           onChanged: onTitleChanged,
           decoration: const InputDecoration(
             border: OutlineInputBorder(),
@@ -119,9 +126,19 @@ class _AddPageBody extends StatelessWidget {
         ),
         const SizedBox(height: 20),
         ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(16),
+            ),
+            fixedSize: const Size(180, 40),
+            backgroundColor: const Color.fromARGB(255, 162, 222, 240),
+          ),
           onPressed: () async {
             final selectedDate = await showDatePicker(
               context: context,
+              cancelText: 'zamknij',
+              confirmText: 'zapisz',
+              helpText: 'wybierz datę',
               initialDate: DateTime.now(),
               firstDate: DateTime.now(),
               lastDate: DateTime.now().add(
@@ -130,10 +147,20 @@ class _AddPageBody extends StatelessWidget {
             );
             onDateChanged(selectedDate);
           },
-          child: Text(selectedDateFormatted ?? 'Wybierz datę wydarzenia'),
+          child: Text(
+            selectedDateFormatted ?? 'Wybierz datę wydarzenia',
+            style: GoogleFonts.kanit(color: Colors.black, fontSize: 16),
+          ),
         ),
         const SizedBox(height: 10),
         ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(16),
+            ),
+            fixedSize: const Size(180, 40),
+            backgroundColor: const Color.fromARGB(255, 162, 222, 240),
+          ),
           onPressed: () async {
             final selectedTime = await showTimePicker(
               context: context,
@@ -145,7 +172,10 @@ class _AddPageBody extends StatelessWidget {
 
             onTimeChanged(selectedTime);
           },
-          child: Text(selectedTimeFormatted ?? 'Dodaj godzinę'),
+          child: Text(
+            selectedTimeFormatted ?? 'Dodaj godzinę',
+            style: GoogleFonts.kanit(color: Colors.black, fontSize: 16),
+          ),
         ),
       ],
     );
