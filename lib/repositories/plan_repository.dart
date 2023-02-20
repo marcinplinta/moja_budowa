@@ -12,6 +12,7 @@ class PlanRepository {
     if (json == null) {
       return [];
     }
-    return json.map((item) => PlanModel.fromJson(item)).toList();
+    final allPlans = json.map((item) => PlanModel.fromJson(item)).toList();
+    return allPlans.where((plan) => plan.planId == planId).toList();
   }
 }

@@ -21,6 +21,8 @@ class DetailsPlanPage extends StatelessWidget {
       appBar: AppBar(
         title: Text(plan.title),
       ),
+            backgroundColor: const Color.fromARGB(235, 213, 228, 241),
+
       body: BlocProvider<PlanDetailsCubit>(
         create: (context) => PlanDetailsCubit(
           planRepository: PlanRepository(
