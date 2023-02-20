@@ -1,3 +1,7 @@
+import 'package:json_annotation/json_annotation.dart';
+part 'plan_model.g.dart';
+
+@JsonSerializable()
 class PlanModel {
   const PlanModel({
     required this.content,
@@ -6,14 +10,17 @@ class PlanModel {
     required this.planId,
   });
 
+  @JsonKey(name: 'content')
   final String content;
+  @JsonKey(name: 'title')
   final String title;
+  @JsonKey(name: 'id')
   final int id;
+  @JsonKey(name: 'plan_id')
   final int planId;
 
-  PlanModel.fromJson(Map<String, dynamic> json)
-      : id = json['id'],
-        planId = json['plan_id'],
-        title = json['title'],
-        content = json['content'];
+  factory PlanModel.fromJson(Map<String, dynamic> json) =>
+      _$PlanModelFromJson(json);
+
+  Map<String, dynamic> toJson() => _$PlanModelToJson(this);
 }
