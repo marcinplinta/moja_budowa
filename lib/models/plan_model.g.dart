@@ -6,16 +6,17 @@ part of 'plan_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-PlanModel _$PlanModelFromJson(Map<String, dynamic> json) => PlanModel(
-      content: json['content'] as String,
-      title: json['title'] as String,
-      id: json['id'] as int,
-      planId: json['plan_id'] as int,
+_$_PlanModel _$$_PlanModelFromJson(Map<String, dynamic> json) => _$_PlanModel(
+      json['id'] as int,
+      json['plan_id'] as int,
+      json['content'] as String,
+      json['title'] as String,
     );
 
-Map<String, dynamic> _$PlanModelToJson(PlanModel instance) => <String, dynamic>{
-      'content': instance.content,
-      'title': instance.title,
+Map<String, dynamic> _$$_PlanModelToJson(_$_PlanModel instance) =>
+    <String, dynamic>{
       'id': instance.id,
       'plan_id': instance.planId,
+      'content': instance.content,
+      'title': instance.title,
     };
