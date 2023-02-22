@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:moja_budowa/app/core/enums.dart';
@@ -21,12 +22,11 @@ class DetailsPlanPage extends StatelessWidget {
       appBar: AppBar(
         title: Text(plan.title),
       ),
-            backgroundColor: const Color.fromARGB(235, 213, 228, 241),
-
+      backgroundColor: const Color.fromARGB(235, 213, 228, 241),
       body: BlocProvider<PlanDetailsCubit>(
         create: (context) => PlanDetailsCubit(
           planRepository: PlanRepository(
-            planRemoteDataSource: PlanRemoteDataSource(),
+            planRemoteDataSource: PlanRemoteRetrofitDataSource(Dio()),
           ),
         )..fetchData(
             planId: plan.id,
