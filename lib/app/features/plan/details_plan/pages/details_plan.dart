@@ -1,13 +1,11 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:moja_budowa/app/core/enums.dart';
 import 'package:moja_budowa/app/features/plan/cubit/plan_details_cubit.dart';
 import 'package:moja_budowa/app/features/plan/cubit/plan_details_state.dart';
-import 'package:moja_budowa/data/plan_remote_data_source.dart';
+import 'package:moja_budowa/app/injection_container.dart';
 import 'package:moja_budowa/models/plan_model.dart';
 import 'package:moja_budowa/models/plan_title_model.dart';
-import 'package:moja_budowa/repositories/plan_repository.dart';
 
 class DetailsPlanPage extends StatelessWidget {
   const DetailsPlanPage({
@@ -24,11 +22,8 @@ class DetailsPlanPage extends StatelessWidget {
       ),
       backgroundColor: const Color.fromARGB(235, 213, 228, 241),
       body: BlocProvider<PlanDetailsCubit>(
-        create: (context) => PlanDetailsCubit(
-          planRepository: PlanRepository(
-            planRemoteDataSource: PlanRemoteRetrofitDataSource(Dio()),
-          ),
-        )..fetchData(
+        create: (context) => getIt()
+          ..fetchData(
             planId: plan.id,
           ),
         child: Column(
