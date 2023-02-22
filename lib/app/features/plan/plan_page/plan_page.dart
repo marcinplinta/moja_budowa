@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:moja_budowa/app/core/enums.dart';
-import 'package:moja_budowa/app/features/plan/details_plan/details_first.dart';
 import 'package:moja_budowa/app/features/plan/details_plan/pages/details_plan.dart';
 import 'package:moja_budowa/app/features/plan/plan_page/cubit/plan_title_cubit.dart';
 import 'package:moja_budowa/data/plan_title_remote_data_source.dart';

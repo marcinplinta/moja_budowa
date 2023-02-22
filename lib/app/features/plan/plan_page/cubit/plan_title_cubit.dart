@@ -1,5 +1,4 @@
 import 'package:bloc/bloc.dart';
-import 'package:meta/meta.dart';
 import 'package:moja_budowa/app/core/enums.dart';
 import 'package:moja_budowa/models/plan_title_model.dart';
 import 'package:moja_budowa/repositories/plan_title_repository.dart';

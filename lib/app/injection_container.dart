@@ -1,18 +1,19 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
-import 'package:moja_budowa/app/features/plan/cubit/plan_details_cubit.dart';
-import 'package:moja_budowa/data/plan_remote_data_source.dart';
-import 'package:moja_budowa/repositories/plan_repository.dart';
+import 'package:injectable/injectable.dart';
+import 'package:moja_budowa/app/injection_container.config.dart';
 
 final getIt = GetIt.instance;
 
-void configureDependencies() {
-//Bloc
-  getIt.registerFactory(() => PlanDetailsCubit(planRepository: getIt()));
+@InjectableInit()
+void configureDependencies() => getIt.init();
 
-//Repositories
-  getIt.registerFactory(() => PlanRepository(planRemoteDataSource: getIt()));
+@module
+abstract class RegisterModule {
+  @Named("BaseUrl")
+  String get baseUrl =>
+      'https://my-json-server.typicode.com/marcinplinta/json-demo';
 
-//DataSources
-  getIt.registerFactory(() => PlanRemoteRetrofitDataSource(Dio()));
+  @lazySingleton
+  Dio dio(@Named('BaseUrl') String url) => Dio(BaseOptions(baseUrl: url));
 }

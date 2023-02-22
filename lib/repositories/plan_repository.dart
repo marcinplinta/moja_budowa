@@ -1,6 +1,8 @@
+import 'package:injectable/injectable.dart';
 import 'package:moja_budowa/data/plan_remote_data_source.dart';
 import 'package:moja_budowa/models/plan_model.dart';
 
+@injectable
 class PlanRepository {
   PlanRepository({required this.planRemoteDataSource});
 

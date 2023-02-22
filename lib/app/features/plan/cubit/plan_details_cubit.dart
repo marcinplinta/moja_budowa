@@ -1,8 +1,10 @@
 import 'package:bloc/bloc.dart';
+import 'package:injectable/injectable.dart';
 import 'package:moja_budowa/app/core/enums.dart';
 import 'package:moja_budowa/app/features/plan/cubit/plan_details_state.dart';
 import 'package:moja_budowa/repositories/plan_repository.dart';
 
+@injectable
 class PlanDetailsCubit extends Cubit<PlanDetailsState> {
   PlanDetailsCubit({required this.planRepository})
       : super(const PlanDetailsState());

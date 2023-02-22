@@ -11,10 +11,9 @@ part of 'plan_remote_data_source.dart';
 class _PlanRemoteRetrofitDataSource implements PlanRemoteRetrofitDataSource {
   _PlanRemoteRetrofitDataSource(
     this._dio, {
+    // ignore: unused_element
     this.baseUrl,
-  }) {
-    baseUrl ??= 'https://my-json-server.typicode.com/marcinplinta/json-demo';
-  }
+  });
 
   final Dio _dio;
 

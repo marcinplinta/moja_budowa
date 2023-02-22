@@ -6,6 +6,7 @@ part of 'plan_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
+// ignore: non_constant_identifier_names
 _$_PlanModel _$$_PlanModelFromJson(Map<String, dynamic> json) => _$_PlanModel(
       json['id'] as int,
       json['plan_id'] as int,
@@ -13,6 +14,7 @@ _$_PlanModel _$$_PlanModelFromJson(Map<String, dynamic> json) => _$_PlanModel(
       json['title'] as String,
     );
 
+// ignore: non_constant_identifier_names
 Map<String, dynamic> _$$_PlanModelToJson(_$_PlanModel instance) =>
     <String, dynamic>{
       'id': instance.id,
