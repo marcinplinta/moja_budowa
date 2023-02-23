@@ -1,12 +1,12 @@
 part of 'event_cubit.dart';
 
 class EventState {
-  const EventState({
+  EventState({
     this.events = const [],
-    this.loadingErrorOccured = false,
-    this.removingErrorOccured = false,
+    this.status = Status.initial,
+    this.errorMessage,
   });
   final List<EventModel> events;
-  final bool loadingErrorOccured;
-  final bool removingErrorOccured;
+  final Status status;
+  final String? errorMessage;
 }

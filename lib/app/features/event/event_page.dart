@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:moja_budowa/app/core/enums.dart';
 import 'package:moja_budowa/app/features/event/add_event/add_event_page.dart';
 import 'package:moja_budowa/app/features/event/cubit/event_cubit.dart';
 import 'package:moja_budowa/models/event_model.dart';
@@ -42,12 +43,25 @@ class EventPageBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => EventCubit(EventsRepository())..start(),
-      child: BlocBuilder<EventCubit, EventState>(
+      child: BlocConsumer<EventCubit, EventState>(
+        listener: (context, state) {
+          if (state.status == Status.error) {
+            final errorMessage = state.errorMessage ?? "Wystąpił nieznany błąd";
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text(errorMessage),
+                backgroundColor: Colors.red,
+              ),
+            );
+          }
+        },
         builder: (context, state) {
           final eventModels = state.events;
-          if (eventModels.isEmpty) {
-            return const SizedBox.shrink();
+
+          if (state.status == Status.loading) {
+            return const CircularProgressIndicator();
           }
+
           return ListView(
             padding: const EdgeInsets.symmetric(
               vertical: 20,
@@ -71,7 +85,6 @@ class EventPageBody extends StatelessWidget {
                     ),
                   ),
                   confirmDismiss: (direction) async {
-                    // only from right to left
                     return direction == DismissDirection.endToStart;
                   },
                   onDismissed: (direction) {
@@ -108,7 +121,8 @@ class _ListViewEvent extends StatelessWidget {
       ),
       child: Container(
         decoration: const BoxDecoration(
-          color: Colors.black12,
+          borderRadius: BorderRadius.all(Radius.circular(20)),
+          color: Color.fromARGB(164, 6, 43, 124),
         ),
         child: Column(
           children: [
@@ -131,6 +145,9 @@ class _ListViewEvent extends StatelessWidget {
                         const SizedBox(height: 10),
                         Text(
                           eventModel.releaseDateFormatted(),
+                          style: const TextStyle(
+                            color: Color.fromARGB(242, 163, 250, 2),
+                          ),
                         ),
                       ],
                     ),
@@ -138,14 +155,15 @@ class _ListViewEvent extends StatelessWidget {
                 ),
                 Container(
                   decoration: const BoxDecoration(
-                    color: Colors.white70,
+                    borderRadius: BorderRadius.all(Radius.circular(20)),
+                    color: Color.fromARGB(251, 243, 6, 6),
                   ),
                   margin: const EdgeInsets.all(10),
                   padding: const EdgeInsets.all(10),
                   child: Column(
                     children: [
                       Text(
-                        eventModel.daysLeft(),
+                        eventModel.daysLeft().toString(),
                         style: const TextStyle(
                           fontSize: 20.0,
                           fontWeight: FontWeight.bold,

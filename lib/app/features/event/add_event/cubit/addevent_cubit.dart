@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:flutter/material.dart';
 
 import 'dart:async';
 
@@ -13,9 +14,14 @@ class AddeventCubit extends Cubit<AddeventState> {
   Future<void> add(
     String title,
     DateTime releaseDate,
+    TimeOfDay releaseTime,
   ) async {
     try {
-      await _eventsRepository.add(title, releaseDate);
+      await _eventsRepository.add(
+        title,
+        releaseDate,
+        releaseTime,
+      );
       // throw Exception('Coś poszło nie tak');
 
       emit(const AddeventState(saved: true));

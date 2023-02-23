@@ -1,7 +1,7 @@
-part of 'root_cubit.dart';
+part of 'auth_cubit.dart';
 
-class RootState {
-  const RootState({
+class AuthState {
+  const AuthState({
     this.user,
     this.status = Status.initial,
     this.isCreatingAccount = false,

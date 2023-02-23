@@ -25,10 +25,6 @@ class CostView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: const Icon(Icons.add),
-      ),
       backgroundColor: const Color.fromARGB(235, 213, 228, 241),
       body: ListView(
         children: const [
@@ -69,13 +65,36 @@ class ListCostWidget extends StatelessWidget {
           ),
         );
       },
-      child: Container(
-        padding: const EdgeInsets.all(15),
-        margin: const EdgeInsets.all(5),
-        color: Colors.cyan,
-        child: Text(
-          title,
-        ),
+      child: Row(
+        children: [
+          Expanded(
+            child: Container(
+              padding: const EdgeInsets.all(15),
+              margin: const EdgeInsets.all(5),
+              color: Colors.cyan,
+              child: Row(
+                children: [
+                  Text(
+                    title,
+                  ),
+                  const Icon(
+                    Icons.arrow_right,
+                    color: Colors.black,
+                    size: 20,
+                  ),
+                ],
+              ),
+            ),
+          ),
+          Container(
+            decoration: const BoxDecoration(
+              color: Colors.white70,
+            ),
+            margin: const EdgeInsets.all(5),
+            padding: const EdgeInsets.all(15),
+            child: const Text(' 1000 zł'),
+          ),
+        ],
       ),
     );
   }
