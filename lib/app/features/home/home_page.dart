@@ -78,7 +78,7 @@ class HomePageState extends State<HomePage> {
                 },
               ),
               ElevatedButton(
-                child: const Text('Lista Zadań'),
+                child: const Text('Lista zadań'),
                 onPressed: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(
@@ -98,7 +98,7 @@ class HomePageState extends State<HomePage> {
                 },
               ),
               ElevatedButton(
-                child: const Text('Planer Budowy'),
+                child: const Text('Planer budowy'),
                 onPressed: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(
