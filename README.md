@@ -21,6 +21,8 @@ App contains functionalities of organizer of construction work, save current tas
 - during Units tests
 
 ## App preview
-<img src="https://user-images.githubusercontent.com/119503550/221214434-d64bc750-cef1-49eb-b8b6-878ad2cff4bc.gif" width="500" height="500">
+
+<img src="https://user-images.githubusercontent.com/119503550/221243506-c1126572-2d1e-4635-8727-f0bc0e879e1c.gif" width="250" height="500">
 
 ## And more to come in the future 
+
