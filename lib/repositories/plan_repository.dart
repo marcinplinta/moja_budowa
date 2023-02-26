@@ -11,10 +11,6 @@ class PlanRepository {
   Future<List<PlanModel>> getPlanForPlanID(int planId) async {
     final allPlans = await planRemoteDataSource.getPlanData();
 
-    // if (json == null) {
-    //   return [];
-    // }
-    // final allPlans = json.map((item) => PlanModel.fromJson(item)).toList();
     return allPlans.where((plan) => plan.planId == planId).toList();
   }
 }

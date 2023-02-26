@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:moja_budowa/app/core/enums.dart';
 import 'package:moja_budowa/app/features/plan/cubit/plan_details_cubit.dart';
-import 'package:moja_budowa/app/features/plan/cubit/plan_details_state.dart';
 import 'package:moja_budowa/app/injection_container.dart';
 import 'package:moja_budowa/models/plan_model.dart';
 import 'package:moja_budowa/models/plan_title_model.dart';
