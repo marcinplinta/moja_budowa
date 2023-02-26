@@ -1,19 +1,22 @@
 import 'package:bloc/bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:moja_budowa/app/core/enums.dart';
-import 'package:moja_budowa/app/features/plan/cubit/plan_details_state.dart';
+import 'package:moja_budowa/models/plan_model.dart';
 import 'package:moja_budowa/repositories/plan_repository.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part 'plan_details_state.dart';
+part 'plan_details_cubit.freezed.dart';
 
 @injectable
 class PlanDetailsCubit extends Cubit<PlanDetailsState> {
-  PlanDetailsCubit({required this.planRepository})
-      : super(const PlanDetailsState());
+  PlanDetailsCubit({required this.planRepository}) : super(PlanDetailsState());
 
   final PlanRepository planRepository;
 
   Future<void> fetchData({required int planId}) async {
     emit(
-      const PlanDetailsState(
+      PlanDetailsState(
         status: Status.loading,
       ),
     );

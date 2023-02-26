@@ -3,7 +3,6 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:moja_budowa/app/core/enums.dart';
 import 'package:moja_budowa/app/features/plan/cubit/plan_details_cubit.dart';
-import 'package:moja_budowa/app/features/plan/cubit/plan_details_state.dart';
 import 'package:moja_budowa/models/plan_model.dart';
 import 'package:moja_budowa/repositories/plan_repository.dart';
 
@@ -35,7 +34,7 @@ void main() {
         build: () => sut,
         act: (cubit) => cubit.fetchData(planId: 111),
         expect: () => [
-          const PlanDetailsState(
+          PlanDetailsState(
             status: Status.loading,
           ),
           PlanDetailsState(
@@ -60,10 +59,10 @@ void main() {
         build: () => sut,
         act: (cubit) => cubit.fetchData(planId: 111),
         expect: () => [
-          const PlanDetailsState(
+          PlanDetailsState(
             status: Status.loading,
           ),
-          const PlanDetailsState(
+          PlanDetailsState(
               status: Status.error,
               errorMessage: 'Exception: test-exception-error'),
         ],
