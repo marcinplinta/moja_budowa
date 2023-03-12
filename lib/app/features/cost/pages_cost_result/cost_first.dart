@@ -53,6 +53,9 @@ class _CostPageBody extends StatelessWidget {
           if (costModels.isEmpty) {
             return const SizedBox.shrink();
           }
+          if (state.loadingErrorOccured) {
+            return const Center(child: CircularProgressIndicator());
+          }
           return ListView(
             padding: const EdgeInsets.symmetric(
               vertical: 20,
