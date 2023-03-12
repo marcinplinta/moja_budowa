@@ -17,7 +17,8 @@ class CostResultFirstCubit extends Cubit<CostResultFirstState> {
   Future<void> start() async {
     _streamSubscription = _costsRepository.getCostsStream().listen(
       (costs) {
-        emit(CostResultFirstState(costs: costs));
+        final sum = costs.map((e) => e.amount).reduce((a, b) => a + b);
+        emit(CostResultFirstState(costs: costs, sum: sum));
       },
     )..onError(
         (error) {

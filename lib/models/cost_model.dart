@@ -16,4 +16,9 @@ class CostModel {
   String dateFormatted() {
     return DateFormat("dd.MM.yyyy").format(date);
   }
+
+  String amountFormatted(){
+    return   NumberFormat("#,###.00", "pl_PL").format(amount);
+        
+  }
 }

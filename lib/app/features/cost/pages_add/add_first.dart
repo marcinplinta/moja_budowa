@@ -130,7 +130,6 @@ class _AddPageBody extends StatelessWidget {
           }),
           inputFormatters: [
             FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
-// for version 2 and greater youcan also use this
             FilteringTextInputFormatter.digitsOnly
           ],
           keyboardType: TextInputType.number,
