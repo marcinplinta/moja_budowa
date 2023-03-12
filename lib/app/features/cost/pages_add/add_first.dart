@@ -153,7 +153,7 @@ class _AddPageBody extends StatelessWidget {
             final selectedDate = await showDatePicker(
               context: context,
               initialDate: DateTime.now(),
-              firstDate: DateTime.now(),
+              firstDate: DateTime(2010, 01, 01),
               lastDate: DateTime.now().add(
                 const Duration(days: 365 * 10),
               ),
