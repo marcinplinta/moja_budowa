@@ -113,7 +113,7 @@ class TaskWidget extends StatelessWidget {
     return Container(
       width: 400,
       padding: const EdgeInsets.all(15),
-      margin: const EdgeInsets.all(10),
+      margin: const EdgeInsets.all(3),
       color: Colors.amber,
       child: Text(
         taskModel.title,

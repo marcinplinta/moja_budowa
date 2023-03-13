@@ -124,8 +124,8 @@ class _ListViewCost extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(
-        vertical: 10,
-        horizontal: 30,
+        vertical: 5,
+        horizontal: 10,
       ),
       child: Container(
         decoration: const BoxDecoration(
@@ -138,8 +138,8 @@ class _ListViewCost extends StatelessWidget {
               children: [
                 Expanded(
                   child: Container(
-                    margin: const EdgeInsets.all(10),
-                    padding: const EdgeInsets.all(10),
+                    margin: const EdgeInsets.all(5),
+                    padding: const EdgeInsets.all(5),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
@@ -166,8 +166,8 @@ class _ListViewCost extends StatelessWidget {
                         borderRadius: BorderRadius.all(Radius.circular(10)),
                         color: Color.fromARGB(240, 211, 248, 3),
                       ),
-                      margin: const EdgeInsets.all(10),
-                      padding: const EdgeInsets.all(10),
+                      margin: const EdgeInsets.all(5),
+                      padding: const EdgeInsets.all(5),
                       child: Row(
                         children: [
                           Text(

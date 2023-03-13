@@ -13,11 +13,27 @@ class EventModel {
   final String title;
   final DateTime releaseDate;
   TimeOfDay? releaseTime;
-  int daysLeft() {
-    return releaseDate.difference(DateTime.now()).inDays + 1;
-  }
+  // int daysLeft() {
+  //   return releaseDate.difference(DateTime.now()).inDays + 1;
+  // }
 
   String releaseDateFormatted() {
     return DateFormat("dd.MM.yyyy    HH:mm").format(releaseDate);
+  }
+
+  String daysLeft() {
+    final difference = releaseDate.difference(DateTime.now());
+
+    final days = difference.inDays;
+    final hours = difference.inHours - days * 24;
+    final minutes = difference.inMinutes - days * 24 * 60 - hours * 60;
+
+    if (days > 0) {
+      return '$days dni';
+    } else if (hours > 0) {
+      return '$hours godz. ';
+    } else {
+      return '$minutes min.';
+    }
   }
 }
