@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:moja_budowa/app/cubit/auth_cubit.dart';
 import 'package:moja_budowa/app/features/home/home_page.dart';
-import 'package:moja_budowa/app/features/login/login_page.dart';
 import 'package:moja_budowa/app/features/start/start_page.dart';
 import 'package:moja_budowa/repositories/login_repository.dart';
 
@@ -16,7 +15,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const StartPage(),
+      home: const RootPage(),
     );
   }
 }
@@ -34,7 +33,7 @@ class RootPage extends StatelessWidget {
         builder: (context, state) {
           final user = state.user;
           if (user == null) {
-            return LoginPage();
+            return const StartPage();
           }
           return HomePage(user: user);
         },
