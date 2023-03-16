@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class FotoPage extends StatelessWidget {
-  const FotoPage({
+class PhotoPage extends StatelessWidget {
+  const PhotoPage({
     Key? key,
   }) : super(key: key);
 

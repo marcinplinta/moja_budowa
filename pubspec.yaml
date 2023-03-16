@@ -51,6 +51,8 @@ dependencies:
   get_it: ^7.2.0
   injectable: ^2.1.0
   meta: ^1.8.0
+  image_picker: ^0.8.7
+  firebase_storage: ^11.0.16
   
 
 dev_dependencies:

@@ -3,9 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:moja_budowa/app/features/contract/contract_page.dart';
 import 'package:moja_budowa/app/features/invoice/invoice_page.dart';
+import 'package:moja_budowa/app/features/photo/photos_page.dart';
 import 'package:moja_budowa/app/features/tasks/tasks_page.dart';
 import 'package:moja_budowa/app/features/cost/cost_page.dart';
-import 'package:moja_budowa/app/features/foto/foto_page.dart';
+import 'package:moja_budowa/app/features/photo/photo_page.dart';
 
 import 'package:moja_budowa/app/features/event/event_page.dart';
 import 'package:moja_budowa/app/features/login/profile_page.dart';
@@ -112,7 +113,7 @@ class HomePageState extends State<HomePage> {
                 onPressed: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: (_) => const FotoPage(),
+                      builder: (_) => const PhotosPage(),
                     ),
                   );
                 },
