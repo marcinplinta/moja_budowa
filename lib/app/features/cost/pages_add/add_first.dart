@@ -130,7 +130,6 @@ class _AddPageBody extends StatelessWidget {
           }),
           inputFormatters: [
             FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
-// for version 2 and greater youcan also use this
             FilteringTextInputFormatter.digitsOnly
           ],
           keyboardType: TextInputType.number,
@@ -153,7 +152,7 @@ class _AddPageBody extends StatelessWidget {
             final selectedDate = await showDatePicker(
               context: context,
               initialDate: DateTime.now(),
-              firstDate: DateTime.now(),
+              firstDate: DateTime(2010, 01, 01),
               lastDate: DateTime.now().add(
                 const Duration(days: 365 * 10),
               ),

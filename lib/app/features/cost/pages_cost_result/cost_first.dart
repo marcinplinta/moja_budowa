@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 import 'package:moja_budowa/app/features/cost/cost_result/cubit/cost_result_first_cubit.dart';
 import 'package:moja_budowa/app/features/cost/pages_add/add_first.dart';
 import 'package:moja_budowa/models/cost_model.dart';
@@ -13,6 +14,8 @@ class CostFirst extends StatefulWidget {
   @override
   State<CostFirst> createState() => _CostFirstState();
 }
+
+// var sum = 0;
 
 class _CostFirstState extends State<CostFirst> {
   @override
@@ -53,11 +56,25 @@ class _CostPageBody extends StatelessWidget {
           if (costModels.isEmpty) {
             return const SizedBox.shrink();
           }
+          if (state.loadingErrorOccured) {
+            return const Center(child: CircularProgressIndicator());
+          }
+          final formatter = NumberFormat("#,###.00", "pl_PL");
+          final formattedSum = formatter.format(state.sum);
           return ListView(
             padding: const EdgeInsets.symmetric(
               vertical: 20,
             ),
             children: [
+              Center(
+                child: Text(
+                  'Koszt całkowity: $formattedSum zł',
+                  style: const TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
               for (final costModel in costModels)
                 Dismissible(
                   key: ValueKey(costModel.id),
@@ -107,8 +124,8 @@ class _ListViewCost extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(
-        vertical: 10,
-        horizontal: 30,
+        vertical: 5,
+        horizontal: 10,
       ),
       child: Container(
         decoration: const BoxDecoration(
@@ -121,8 +138,8 @@ class _ListViewCost extends StatelessWidget {
               children: [
                 Expanded(
                   child: Container(
-                    margin: const EdgeInsets.all(10),
-                    padding: const EdgeInsets.all(10),
+                    margin: const EdgeInsets.all(5),
+                    padding: const EdgeInsets.all(5),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
@@ -149,12 +166,12 @@ class _ListViewCost extends StatelessWidget {
                         borderRadius: BorderRadius.all(Radius.circular(10)),
                         color: Color.fromARGB(240, 211, 248, 3),
                       ),
-                      margin: const EdgeInsets.all(10),
-                      padding: const EdgeInsets.all(10),
+                      margin: const EdgeInsets.all(5),
+                      padding: const EdgeInsets.all(5),
                       child: Row(
                         children: [
                           Text(
-                            costModel.amount.toString(),
+                            costModel.amountFormatted(),
                             style: const TextStyle(
                               fontSize: 18.0,
                               fontWeight: FontWeight.bold,

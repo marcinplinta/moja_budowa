@@ -116,8 +116,8 @@ class _ListViewEvent extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(
-        vertical: 10,
-        horizontal: 30,
+        vertical: 5,
+        horizontal: 10,
       ),
       child: Container(
         decoration: const BoxDecoration(
@@ -130,8 +130,8 @@ class _ListViewEvent extends StatelessWidget {
               children: [
                 Expanded(
                   child: Container(
-                    margin: const EdgeInsets.all(10),
-                    padding: const EdgeInsets.all(10),
+                    margin: const EdgeInsets.all(5),
+                    padding: const EdgeInsets.all(5),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
@@ -158,18 +158,18 @@ class _ListViewEvent extends StatelessWidget {
                     borderRadius: BorderRadius.all(Radius.circular(20)),
                     color: Color.fromARGB(251, 243, 6, 6),
                   ),
-                  margin: const EdgeInsets.all(10),
+                  margin: const EdgeInsets.all(5),
                   padding: const EdgeInsets.all(10),
                   child: Column(
                     children: [
                       Text(
                         eventModel.daysLeft().toString(),
                         style: const TextStyle(
-                          fontSize: 20.0,
+                          fontSize: 18.0,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      const Text('pozostało dni'),
+                      const Text('pozostało'),
                     ],
                   ),
                 ),
