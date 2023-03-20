@@ -30,6 +30,9 @@ class LoginPage extends StatelessWidget {
               ),
             );
           }
+          if (state.status == Status.success) {
+            Navigator.of(context).pop();
+          }
         },
         child: BlocBuilder<AuthCubit, AuthState>(
           builder: (context, state) {
@@ -92,7 +95,6 @@ class LoginPage extends StatelessWidget {
                                     fontWeight: FontWeight.bold, fontSize: 18)),
                             cursorColor: Colors.black),
                       ),
-                      Text(state.errorMessage),
                       Row(
                         children: [
                           Expanded(
@@ -120,12 +122,10 @@ class LoginPage extends StatelessWidget {
                                           email: emailController.text,
                                           password: passwordController.text,
                                         );
-                                    Navigator.of(context).pop();
                                   } else {
                                     await context.read<AuthCubit>().signIn(
                                         email: emailController.text,
                                         password: passwordController.text);
-                                    Navigator.of(context).pop();
                                   }
                                 },
                               ),
