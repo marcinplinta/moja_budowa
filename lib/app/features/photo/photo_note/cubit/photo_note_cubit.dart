@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:bloc/bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:moja_budowa/app/core/enums.dart';
@@ -11,22 +13,27 @@ class PhotoNoteCubit extends Cubit<PhotoNoteState> {
 
   final PhotoRepository _photoRepository;
 
+  StreamSubscription? _streamSubscription;
   Future<void> start() async {
-    emit(
-      PhotoNoteState(
-        status: Status.loading,
-        photos: [],
-      ),
-    );
-    try {
-      final photos = await _photoRepository.getPhotos();
-      emit(PhotoNoteState(status: Status.success, photos: photos));
-    } catch (error) {
-      emit(PhotoNoteState(
-        status: Status.error,
-        errorMessage: error.toString(),
-      ));
-    }
+    _streamSubscription = _photoRepository.getPhotosStream().listen(
+      (photos) {
+        emit(
+          PhotoNoteState(
+            photos: photos,
+            status: Status.success,
+          ),
+        );
+      },
+    )..onError(
+        (error) {
+          emit(
+            PhotoNoteState(
+              status: Status.error,
+              errorMessage: error.toString(),
+            ),
+          );
+        },
+      );
   }
 
   Future<void> add(
@@ -46,5 +53,11 @@ class PhotoNoteCubit extends Cubit<PhotoNoteState> {
         ),
       );
     }
+  }
+
+  @override
+  Future<void> close() {
+    _streamSubscription?.cancel();
+    return super.close();
   }
 }

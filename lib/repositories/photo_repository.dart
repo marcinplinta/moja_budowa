@@ -13,12 +13,12 @@ class PhotoRepository {
     return photoRemoteDataSources.addPhotos(image);
   }
 
-  Future<List<PhotoNoteModel>> getPhotos() async {
+  Stream<List<PhotoNoteModel>> getPhotosStream() {
     final userID = FirebaseAuth.instance.currentUser?.uid;
     if (userID == null) {
       throw Exception('User is not logged in');
     }
-    return photoRemoteDataSources.getPhotos();
+    return photoRemoteDataSources.getPhotosStream();
   }
 
   Future<void> deletePhoto({

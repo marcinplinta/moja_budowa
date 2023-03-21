@@ -8,6 +8,28 @@ import 'package:path/path.dart' as path;
 import 'dart:io';
 
 class PhotoRemoteDataSources {
+  Stream<List<PhotoNoteModel>> getPhotosStream() {
+    final userID = FirebaseAuth.instance.currentUser?.uid;
+    if (userID == null) {
+      throw Exception('Jesteś niezalogowany');
+    }
+    return FirebaseFirestore.instance
+        .collection('users')
+        .doc(userID)
+        .collection('photo_note')
+        .snapshots()
+        .map((querySnapshot) {
+      return querySnapshot.docs.map(
+        (doc) {
+          return PhotoNoteModel(
+            id: doc.id,
+            photo: doc['photo'],
+          );
+        },
+      ).toList();
+    });
+  }
+
   Future<void> addPhotos(
     XFile image,
   ) async {
@@ -26,25 +48,6 @@ class PhotoRemoteDataSources {
         .doc(userID)
         .collection('photo_note')
         .add({'photo': url});
-  }
-
-  Future<List<PhotoNoteModel>> getPhotos() async {
-    final userID = FirebaseAuth.instance.currentUser?.uid;
-    if (userID == null) {
-      throw Exception('User is not logged in');
-    }
-    final doc = await FirebaseFirestore.instance
-        .collection('users')
-        .doc(userID)
-        .collection('photo_note')
-        .get();
-
-    return doc.docs.map((doc) {
-      return PhotoNoteModel(
-        id: doc.id,
-        photo: doc['photo'],
-      );
-    }).toList();
   }
 
   Future<void> deletePhoto({
