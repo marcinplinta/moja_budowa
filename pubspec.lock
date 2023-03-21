@@ -590,6 +590,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.0"
+  new_gradient_app_bar:
+    dependency: "direct main"
+    description:
+      name: new_gradient_app_bar
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.2.0"
   node_preamble:
     dependency: transitive
     description:
@@ -605,7 +612,7 @@ packages:
     source: hosted
     version: "2.1.0"
   path:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: path
       url: "https://pub.dartlang.org"

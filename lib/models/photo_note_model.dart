@@ -1,5 +1,5 @@
-class PhotoModel {
-  PhotoModel({
+class PhotoNoteModel {
+  PhotoNoteModel({
     required this.id,
     required this.photo,
   });
