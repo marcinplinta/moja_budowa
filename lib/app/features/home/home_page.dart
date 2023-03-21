@@ -4,10 +4,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:moja_budowa/app/features/contract/contract_page.dart';
 import 'package:moja_budowa/app/features/invoice/invoice_page.dart';
 import 'package:moja_budowa/app/features/photo/photo_note/photo_note_page.dart';
-import 'package:moja_budowa/app/features/photo/photos_page.dart';
 import 'package:moja_budowa/app/features/tasks/tasks_page.dart';
 import 'package:moja_budowa/app/features/cost/cost_page.dart';
-import 'package:moja_budowa/app/features/photo/photo_page.dart';
 
 import 'package:moja_budowa/app/features/event/event_page.dart';
 import 'package:moja_budowa/app/features/login/profile_page.dart';
@@ -70,7 +68,7 @@ class HomePageState extends State<HomePage> {
                         'dodaj zdjęcie domu')),
               ),
               ElevatedButton(
-                child: const Text('Koszty Budowy'),
+                child: const Text('Koszty budowy'),
                 onPressed: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(
@@ -174,7 +172,7 @@ class HomePageState extends State<HomePage> {
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.event_note),
-            label: "Lista zadań",
+            label: "lista zadań",
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
