@@ -6,8 +6,6 @@ import 'package:moja_budowa/data/photo_remote_data_source.dart';
 import 'package:moja_budowa/models/photo_note_model.dart';
 import 'package:moja_budowa/repositories/photo_repository.dart';
 
-import 'package:new_gradient_app_bar/new_gradient_app_bar.dart';
-
 class DetalisPhotoNotePage extends StatelessWidget {
   const DetalisPhotoNotePage(
       {required this.id, this.photoNoteModel, super.key});
@@ -50,18 +48,20 @@ class DetalisPhotoNotePage extends StatelessWidget {
           }
           final photoNoteModel = state.photoNoteModel;
           return Scaffold(
-              appBar: NewGradientAppBar(
-                leading: IconButton(
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                  icon: const Icon(
-                    Icons.arrow_back,
-                    color: Color.fromARGB(255, 56, 55, 55),
-                  ),
-                ),
-                gradient:
-                    const LinearGradient(colors: [Colors.cyan, Colors.indigo]),
+              appBar: AppBar(
+                actions: [
+                  IconButton(
+                      onPressed: () {
+                        context
+                            .read<DetailsPhotoCubit>()
+                            .remove(documentID: photoNoteModel!.id);
+
+                        Navigator.of(context).pop();
+                      },
+                      icon: const Icon(
+                        Icons.delete,
+                      ))
+                ],
               ),
               body: Center(
                 child: Column(
@@ -74,15 +74,6 @@ class DetalisPhotoNotePage extends StatelessWidget {
                         ),
                       ),
                     ),
-                    ElevatedButton(
-                        onPressed: () {
-                          context
-                              .read<DetailsPhotoCubit>()
-                              .remove(documentID: photoNoteModel.id);
-
-                          Navigator.of(context).pop();
-                        },
-                        child: const Text('Delete'))
                   ],
                 ),
               ));

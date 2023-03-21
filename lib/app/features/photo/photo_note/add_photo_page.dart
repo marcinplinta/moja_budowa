@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:moja_budowa/app/features/photo/photo_note/cubit/photo_note_cubit.dart';
 import 'dart:io';
-import 'package:new_gradient_app_bar/new_gradient_app_bar.dart';
 import 'package:image_picker/image_picker.dart';
 
 class AddPhotoPage extends StatefulWidget {
@@ -33,39 +32,24 @@ class _AddPhotoPageState extends State<AddPhotoPage> {
       },
       builder: (context, state) {
         return Scaffold(
-            appBar: NewGradientAppBar(
+            appBar: AppBar(
               actions: [
                 IconButton(
                     onPressed: () {
                       context.read<PhotoNoteCubit>().add(image!);
                     },
                     icon: const Icon(
-                      Icons.save_as_outlined,
-                      color: Color.fromARGB(255, 56, 55, 55),
+                      Icons.check,
                     ))
               ],
-              leading: IconButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                icon: const Icon(
-                  Icons.arrow_back,
-                  color: Color.fromARGB(255, 56, 55, 55),
-                ),
-              ),
-              gradient: const LinearGradient(
-                colors: [Colors.cyan, Colors.indigo],
-              ),
             ),
-            backgroundColor: const Color.fromARGB(255, 208, 225, 234),
+            backgroundColor: const Color.fromARGB(235, 213, 228, 241),
             floatingActionButton: Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Container(
                   decoration: BoxDecoration(
-                    gradient: const LinearGradient(
-                      colors: [Colors.cyan, Colors.indigo],
-                    ),
+                    color: Colors.amber,
                     borderRadius: BorderRadius.circular(55),
                   ),
                   child: FloatingActionButton(
@@ -87,12 +71,10 @@ class _AddPhotoPageState extends State<AddPhotoPage> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(left: 10, right: 10),
+                  padding: const EdgeInsets.only(left: 15, right: 10),
                   child: Container(
                     decoration: BoxDecoration(
-                      gradient: const LinearGradient(
-                        colors: [Colors.cyan, Colors.indigo],
-                      ),
+                      color: Colors.amber,
                       borderRadius: BorderRadius.circular(55),
                     ),
                     child: FloatingActionButton(

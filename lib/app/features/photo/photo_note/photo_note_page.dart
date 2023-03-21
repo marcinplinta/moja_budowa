@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:moja_budowa/app/core/enums.dart';
 import 'package:moja_budowa/app/features/photo/photo_note/add_photo_page.dart';
 import 'package:moja_budowa/app/features/photo/photo_note/cubit/photo_note_cubit.dart';
@@ -8,8 +7,6 @@ import 'package:moja_budowa/app/widgets/photo_widget.dart';
 import 'package:moja_budowa/data/photo_remote_data_source.dart';
 import 'package:moja_budowa/models/photo_note_model.dart';
 import 'package:moja_budowa/repositories/photo_repository.dart';
-
-import 'package:new_gradient_app_bar/new_gradient_app_bar.dart';
 
 class PhotoNotePage extends StatelessWidget {
   const PhotoNotePage({
@@ -36,7 +33,7 @@ class PhotoNotePage extends StatelessWidget {
         builder: (context, state) {
           if (state.status == Status.initial) {
             return const Center(
-              child: Text('Initial state'),
+              child: CircularProgressIndicator(),
             );
           }
           if (state.status == Status.loading) {
@@ -69,58 +66,8 @@ class ViewPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: NewGradientAppBar(
-        actions: [
-          PopupMenuButton(
-              icon: const Icon(
-                Icons.more_vert,
-                color: Color.fromARGB(255, 56, 55, 55),
-              ),
-              itemBuilder: (context) {
-                return [
-                  PopupMenuItem<int>(
-                    value: 0,
-                    child: Text(
-                      "Add Photo",
-                      style: GoogleFonts.arimo(
-                        fontSize: 12,
-                        fontWeight: FontWeight.bold,
-                        color: const Color.fromARGB(255, 56, 55, 55),
-                      ),
-                    ),
-                  ),
-                ];
-              },
-              onSelected: (value) {
-                if (value == 0) {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (_) => BlocProvider.value(
-                            value: context.read<PhotoNoteCubit>(),
-                            child: const AddPhotoPage(),
-                          )));
-                }
-              }),
-        ],
-        leading: IconButton(
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-          icon: const Icon(
-            Icons.arrow_back,
-            color: Color.fromARGB(255, 56, 55, 55),
-          ),
-        ),
-        gradient: const LinearGradient(
-          colors: [Colors.cyan, Colors.indigo],
-        ),
-        title: Text(
-          'PHOTO NOTE',
-          style: GoogleFonts.arimo(
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-            color: const Color.fromARGB(255, 56, 55, 55),
-          ),
-        ),
+      appBar: AppBar(
+        title: const Text('Zdjęcia budowy'),
       ),
       body: GridView(
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -132,7 +79,17 @@ class ViewPage extends StatelessWidget {
           ]
         ],
       ),
-      backgroundColor: const Color.fromARGB(255, 208, 225, 234),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.of(context).push(MaterialPageRoute(
+              builder: (_) => BlocProvider.value(
+                    value: context.read<PhotoNoteCubit>(),
+                    child: const AddPhotoPage(),
+                  )));
+        },
+        child: const Icon(Icons.add),
+      ),
+      backgroundColor: const Color.fromARGB(235, 213, 228, 241),
     );
   }
 }
