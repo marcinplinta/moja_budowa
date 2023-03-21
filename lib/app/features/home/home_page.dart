@@ -53,6 +53,9 @@ class HomePageState extends State<HomePage> {
         if (currentIndex == 2) {
           return const CostView();
         }
+        if (currentIndex == 3) {
+          return const EventPageBody();
+        }
 
         return Padding(
           padding: const EdgeInsets.all(12.0),
@@ -163,6 +166,7 @@ class HomePageState extends State<HomePage> {
         );
       }),
       bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
         currentIndex: currentIndex,
         onTap: (newIndex) {
           setState(() {
@@ -181,6 +185,10 @@ class HomePageState extends State<HomePage> {
           BottomNavigationBarItem(
             icon: Icon(Icons.money),
             label: "koszty",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.event),
+            label: "wydarzenia",
           ),
         ],
       ),

@@ -33,6 +33,7 @@ class _AddPhotoPageState extends State<AddPhotoPage> {
       builder: (context, state) {
         return Scaffold(
             appBar: AppBar(
+              title: const Text('Dodaj zdjęcie'),
               actions: [
                 IconButton(
                     onPressed: () {
