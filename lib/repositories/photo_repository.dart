@@ -1,8 +1,4 @@
-import 'dart:io';
-
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:moja_budowa/data/photo_remote_data_source.dart';
 import 'package:moja_budowa/models/photo_note_model.dart';
@@ -33,7 +29,7 @@ class PhotoRepository {
       throw Exception('User is not logged in');
     }
 
-    // return photoRemoteDataSources.deleteNote(id: id);
+    return photoRemoteDataSources.deletePhoto(id: id);
   }
 
   Future<PhotoNoteModel> getDetalisPhotoNote({required String id}) async {
