@@ -69,10 +69,7 @@ class _AddeventState extends State<AddEventPage> {
                     _releaseTime = newValue;
                   });
                 },
-                selectedTimeFormatted: _releaseTime?.toString(),
-                // selectedTimeFormatted: _releaseTime == null
-                //     ? null
-                //     : DateFormat("HH:mm").format(_releaseTime!),
+                selectedTimeFormatted: _releaseTime?.format(context),
                 onDateChanged: (newValue) {
                   setState(() {
                     _releaseDate = newValue;

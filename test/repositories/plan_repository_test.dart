@@ -21,6 +21,7 @@ void main() {
         (_) async => [],
       );
       //2
+      // ignore: unused_local_variable
       final results = await sut.getPlanForPlanID(111);
 
       //3

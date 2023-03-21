@@ -51,6 +51,10 @@ dependencies:
   get_it: ^7.2.0
   injectable: ^2.1.0
   meta: ^1.8.0
+  image_picker: ^0.8.7
+  firebase_storage: ^11.0.16
+  new_gradient_app_bar: ^0.2.0
+  path: ^1.8.2
   
 
 dev_dependencies:

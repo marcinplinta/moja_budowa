@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:moja_budowa/app/features/contract/contract_page.dart';
 import 'package:moja_budowa/app/features/invoice/invoice_page.dart';
+import 'package:moja_budowa/app/features/photo/photo_note/photo_note_page.dart';
 import 'package:moja_budowa/app/features/tasks/tasks_page.dart';
 import 'package:moja_budowa/app/features/cost/cost_page.dart';
-import 'package:moja_budowa/app/features/foto/foto_page.dart';
 
 import 'package:moja_budowa/app/features/event/event_page.dart';
 import 'package:moja_budowa/app/features/login/profile_page.dart';
@@ -53,6 +53,9 @@ class HomePageState extends State<HomePage> {
         if (currentIndex == 2) {
           return const CostView();
         }
+        if (currentIndex == 3) {
+          return const EventPageBody();
+        }
 
         return Padding(
           padding: const EdgeInsets.all(12.0),
@@ -68,7 +71,7 @@ class HomePageState extends State<HomePage> {
                         'dodaj zdjęcie domu')),
               ),
               ElevatedButton(
-                child: const Text('Koszty Budowy'),
+                child: const Text('Koszty budowy'),
                 onPressed: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(
@@ -112,7 +115,7 @@ class HomePageState extends State<HomePage> {
                 onPressed: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: (_) => const FotoPage(),
+                      builder: (_) => const PhotoNotePage(),
                     ),
                   );
                 },
@@ -163,6 +166,7 @@ class HomePageState extends State<HomePage> {
         );
       }),
       bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
         currentIndex: currentIndex,
         onTap: (newIndex) {
           setState(() {
@@ -172,7 +176,7 @@ class HomePageState extends State<HomePage> {
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.event_note),
-            label: "Lista zadań",
+            label: "lista zadań",
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
@@ -181,6 +185,10 @@ class HomePageState extends State<HomePage> {
           BottomNavigationBarItem(
             icon: Icon(Icons.money),
             label: "koszty",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.event),
+            label: "wydarzenia",
           ),
         ],
       ),
