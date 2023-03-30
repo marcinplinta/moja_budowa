@@ -33,7 +33,7 @@ class PhotoNotePage extends StatelessWidget {
         builder: (context, state) {
           if (state.status == Status.initial) {
             return const Center(
-              child: CircularProgressIndicator(),
+              child: Text('Proszę czekać, ładowanie danych'),
             );
           }
           if (state.status == Status.loading) {

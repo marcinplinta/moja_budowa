@@ -52,11 +52,22 @@ class PhotoRemoteDataSources {
 
   Future<void> deletePhoto({
     required String id,
+    // required String photo,
   }) async {
     final userID = FirebaseAuth.instance.currentUser?.uid;
     if (userID == null) {
       throw Exception('User is not logged in');
     }
+    // final photoRef = FirebaseStorage.instance.ref().storage.refFromURL(
+    //       photo
+    //     );
+    // await photoRef.delete();
+
+    // final FirebaseStorage storage = FirebaseStorage.instance;
+
+    // final Reference fileRef = storage.ref().child('path/to/file.jpg');
+
+    // fileRef.delete();
 
     return FirebaseFirestore.instance
         .collection('users')

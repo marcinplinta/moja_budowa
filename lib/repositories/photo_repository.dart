@@ -23,13 +23,17 @@ class PhotoRepository {
 
   Future<void> deletePhoto({
     required String id,
+    // required String photo,
   }) async {
     final userID = FirebaseAuth.instance.currentUser?.uid;
     if (userID == null) {
       throw Exception('User is not logged in');
     }
 
-    return photoRemoteDataSources.deletePhoto(id: id);
+    return photoRemoteDataSources.deletePhoto(
+      id: id,
+      // photo: photo,
+    );
   }
 
   Future<PhotoNoteModel> getDetalisPhotoNote({required String id}) async {

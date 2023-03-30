@@ -52,9 +52,10 @@ class DetalisPhotoNotePage extends StatelessWidget {
                 actions: [
                   IconButton(
                       onPressed: () {
-                        context
-                            .read<DetailsPhotoCubit>()
-                            .remove(documentID: photoNoteModel!.id);
+                        context.read<DetailsPhotoCubit>().remove(
+                              documentID: photoNoteModel!.id,
+                              // photo: photoNoteModel.photo,
+                            );
 
                         Navigator.of(context).pop();
                       },

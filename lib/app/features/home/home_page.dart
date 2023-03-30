@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:moja_budowa/app/category/category_page_content.dart';
 import 'package:moja_budowa/app/features/contract/contract_page.dart';
 import 'package:moja_budowa/app/features/invoice/invoice_page.dart';
 import 'package:moja_budowa/app/features/photo/photo_note/photo_note_page.dart';
@@ -124,7 +125,7 @@ class HomePageState extends State<HomePage> {
                 onPressed: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: (_) => const InvoicePage(),
+                      builder: (_) => const CategoryPageContent(),
                     ),
                   );
                 },
