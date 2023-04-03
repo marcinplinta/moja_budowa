@@ -37,7 +37,7 @@ class CategoryRepository {
     String title,
     DateTime date,
     int amount,
-    // String categoryId,
+     String categoryId,
   ) async {
     final userID = FirebaseAuth.instance.currentUser?.uid;
     if (userID == null) {
@@ -47,7 +47,7 @@ class CategoryRepository {
       title,
       date,
       amount,
-      // categoryId,
+       categoryId,
     );
   }
 

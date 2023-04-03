@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:moja_budowa/app/category/cubit/category_page_cubit.dart';
 import 'package:moja_budowa/app/core/enums.dart';
 import 'package:moja_budowa/app/expenses/add_expenses/add_expenses_page.dart';
+import 'package:moja_budowa/app/expenses/add_expenses/cubit/add_expenses_cubit.dart';
+import 'package:moja_budowa/app/expenses/cubit/expenses_cubit.dart';
 import 'package:moja_budowa/app/widgets/expenses_widget.dart';
 import 'package:moja_budowa/data/category_remote_data_source.dart';
 import 'package:moja_budowa/models/category_model.dart';
@@ -66,13 +68,23 @@ class ExpensesPage extends StatelessWidget {
               categoryId: categoryModel.id,
             ),
             floatingActionButton: FloatingActionButton(
-              onPressed: () {
-                Navigator.of(context).push(
+              onPressed: () async {
+                await Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (context) => AddExpensesPage(id: categoryModel.id),
+                    builder: (context) =>
+                        AddExpensesPage(categoryId: categoryModel.id),
                     fullscreenDialog: true,
                   ),
                 );
+                // context.read<ExpensesCubit>().getExpenses(id);
+
+                // Navigator.of(context).push(MaterialPageRoute(
+                //     builder: (_) => BlocProvider.value(
+                //           value: context.read<CategoryPageCubit>(),
+                //           child: AddExpensesPage(
+                //             categoryId: categoryModel.id,
+                //           ),
+                //         )));
               },
               child: const Icon(Icons.edit),
             ),

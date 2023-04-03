@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:moja_budowa/app/category/cubit/category_page_cubit.dart';
 import 'package:moja_budowa/app/expenses/add_expenses/cubit/add_expenses_cubit.dart';
 import 'package:moja_budowa/data/category_remote_data_source.dart';
 import 'package:moja_budowa/models/category_model.dart';
@@ -10,11 +11,11 @@ import 'package:moja_budowa/repositories/category_repository.dart';
 
 class AddExpensesPage extends StatefulWidget {
   const AddExpensesPage({
-    required this.id,
+    required this.categoryId,
     Key? key,
   }) : super(key: key);
 
-  final String id;
+  final String categoryId;
   @override
   State<AddExpensesPage> createState() => _AddExpensesState();
 }
@@ -36,6 +37,7 @@ class _AddExpensesState extends State<AddExpensesPage> {
         listener: (context, state) {
           if (state.saved) {
             Navigator.of(context).pop();
+            // context.read<CategoryPageCubit>();
           }
           if (state.errorMessage.isNotEmpty) {
             ScaffoldMessenger.of(context).showSnackBar(
@@ -62,7 +64,7 @@ class _AddExpensesState extends State<AddExpensesPage> {
                                       _title!,
                                       _date!,
                                       _amount!,
-                                      // _categoryId!,
+                                      widget.categoryId,
                                     );
                               },
                     icon: const Icon(Icons.check),

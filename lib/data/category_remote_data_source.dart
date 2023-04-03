@@ -70,7 +70,7 @@ class CategoryRemoteDataSources {
     String title,
     DateTime date,
     int amount,
-    // String categoryId,
+    String categoryId,
   ) async {
     final userID = FirebaseAuth.instance.currentUser?.uid;
     if (userID == null) {
@@ -82,7 +82,7 @@ class CategoryRemoteDataSources {
         .collection('expenses')
         .add({
       'title': title,
-      // 'category_id': categoryId,
+      'category_id': categoryId,
       'date': date,
       'amount': amount,
     });

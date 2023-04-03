@@ -57,14 +57,14 @@ class AddExpensesCubit extends Cubit<AddExpensesState> {
     String title,
     DateTime date,
     int amount,
-    // String categoryId,
+    String categoryId,
   ) async {
     try {
       await _categoryRepository.addExpenses(
         title,
         date,
         amount,
-        // categoryId,
+        categoryId,
       );
       // throw Exception('Coś poszło nie tak');
 
