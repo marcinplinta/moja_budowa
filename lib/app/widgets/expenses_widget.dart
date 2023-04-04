@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 import 'package:moja_budowa/app/core/enums.dart';
 import 'package:moja_budowa/app/expenses/cubit/expenses_cubit.dart';
 
@@ -50,9 +51,19 @@ class ExpensesWidget extends StatelessWidget {
             }
           }
           final expensesModels = state.expenses;
-
+          final formatter = NumberFormat("#,###.00", "pl_PL");
+          final formattedSum = formatter.format(state.sum);
           return ListView(
             children: [
+              Center(
+                child: Text(
+                  'Koszt całkowity: $formattedSum zł',
+                  style: const TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
               for (final expensesModel in expensesModels) ...[
                 Dismissible(
                   key: ValueKey(expensesModel.id),
@@ -71,8 +82,7 @@ class ExpensesWidget extends StatelessWidget {
                     ),
                   ),
                   confirmDismiss: (direction) async {
-                    // only from left to right
-                    return direction == DismissDirection.startToEnd;
+                    return direction == DismissDirection.endToStart;
                   },
                   onDismissed: (direction) {
                     context.read<ExpensesCubit>().remove(

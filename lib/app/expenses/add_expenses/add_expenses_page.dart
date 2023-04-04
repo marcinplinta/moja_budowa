@@ -5,13 +5,16 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:moja_budowa/app/expenses/add_expenses/cubit/add_expenses_cubit.dart';
 import 'package:moja_budowa/data/category_remote_data_source.dart';
+import 'package:moja_budowa/models/category_model.dart';
 import 'package:moja_budowa/repositories/category_repository.dart';
 
 class AddExpensesPage extends StatefulWidget {
   const AddExpensesPage({
     required this.categoryId,
+    required this.categoryModel,
     Key? key,
   }) : super(key: key);
+  final CategoryModel? categoryModel;
 
   final String categoryId;
   @override
@@ -49,7 +52,9 @@ class _AddExpensesState extends State<AddExpensesPage> {
             return Scaffold(
               backgroundColor: const Color.fromARGB(235, 213, 228, 241),
               appBar: AppBar(
-                title: const Text('Przygotowanie dokumentacji'),
+                title: Text(
+                  widget.categoryModel!.title,
+                ),
                 actions: [
                   IconButton(
                     onPressed:

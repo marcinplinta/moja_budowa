@@ -7,7 +7,10 @@ class CategoryRemoteDataSources {
   Future<List<CategoryModel>> getCategories() async {
     final doc = await FirebaseFirestore.instance
         .collection('categories')
-        // .orderBy('title', descending: true)
+        .orderBy(
+          'title',
+          // descending: true,
+        )
         .get();
 
     return doc.docs.map((doc) {

@@ -30,7 +30,7 @@ class CategoryWidget extends StatelessWidget {
                   Expanded(
                     child: Text(
                       categoryModel.title,
-                      style: GoogleFonts.arimo(
+                      style: GoogleFonts.lora(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
                         color: Colors.black,

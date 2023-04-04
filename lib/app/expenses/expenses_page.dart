@@ -69,8 +69,10 @@ class ExpensesPage extends StatelessWidget {
               onPressed: () async {
                 await Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (context) =>
-                        AddExpensesPage(categoryId: categoryModel.id),
+                    builder: (context) => AddExpensesPage(
+                      categoryId: categoryModel.id,
+                      categoryModel: categoryModel,
+                    ),
                     fullscreenDialog: true,
                   ),
                 );

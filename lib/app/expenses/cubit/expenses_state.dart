@@ -6,6 +6,7 @@ class ExpensesState {
   final List<ExpensesModel> expenses;
   final Status status;
   final String? errorMessage;
+  final int sum;
 
   const ExpensesState({
     this.expenses = const [],
@@ -13,5 +14,6 @@ class ExpensesState {
     this.removingErrorOccured = false,
     this.status = Status.initial,
     this.errorMessage = '',
+    this.sum = 0,
   });
 }
