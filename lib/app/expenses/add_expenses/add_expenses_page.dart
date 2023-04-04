@@ -3,10 +3,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
-import 'package:moja_budowa/app/category/cubit/category_page_cubit.dart';
 import 'package:moja_budowa/app/expenses/add_expenses/cubit/add_expenses_cubit.dart';
 import 'package:moja_budowa/data/category_remote_data_source.dart';
-import 'package:moja_budowa/models/category_model.dart';
 import 'package:moja_budowa/repositories/category_repository.dart';
 
 class AddExpensesPage extends StatefulWidget {
@@ -22,7 +20,6 @@ class AddExpensesPage extends StatefulWidget {
 
 class _AddExpensesState extends State<AddExpensesPage> {
   String? _title;
-  // String? _categoryId;
   String? id;
   DateTime? _date;
   int? _amount;
@@ -37,7 +34,6 @@ class _AddExpensesState extends State<AddExpensesPage> {
         listener: (context, state) {
           if (state.saved) {
             Navigator.of(context).pop();
-            // context.read<CategoryPageCubit>();
           }
           if (state.errorMessage.isNotEmpty) {
             ScaffoldMessenger.of(context).showSnackBar(
