@@ -32,8 +32,10 @@ class PhotoNotePage extends StatelessWidget {
         },
         builder: (context, state) {
           if (state.status == Status.initial) {
-            return const Center(
-              child: Text('Proszę czekać, ładowanie danych'),
+            return const Scaffold(
+              body: Center(
+                child: Text('initial state'),
+              ),
             );
           }
           if (state.status == Status.loading) {

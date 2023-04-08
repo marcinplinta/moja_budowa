@@ -1,13 +1,6 @@
 part of 'expenses_cubit.dart';
 
 class ExpensesState {
-  final bool loadingErrorOccured;
-  final bool removingErrorOccured;
-  final List<ExpensesModel> expenses;
-  final Status status;
-  final String? errorMessage;
-  final int sum;
-
   const ExpensesState({
     this.expenses = const [],
     this.loadingErrorOccured = false,
@@ -16,4 +9,11 @@ class ExpensesState {
     this.errorMessage = '',
     this.sum = 0,
   });
+
+  final bool loadingErrorOccured;
+  final bool removingErrorOccured;
+  final List<ExpensesModel> expenses;
+  final Status status;
+  final String? errorMessage;
+  final int sum;
 }

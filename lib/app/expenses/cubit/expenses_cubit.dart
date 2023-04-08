@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:bloc/bloc.dart';
 import 'package:moja_budowa/app/core/enums.dart';
 import 'package:moja_budowa/models/expenses_model.dart';
@@ -12,6 +14,7 @@ class ExpensesCubit extends Cubit<ExpensesState> {
 
   Future<void> getExpenses(
     String categoryId,
+    // int sum,
   ) async {
     emit(
       const ExpensesState(
@@ -23,8 +26,11 @@ class ExpensesCubit extends Cubit<ExpensesState> {
       final results = await _categoryRepository.getExpenses(
         categoryId: categoryId,
       );
+
+      // final sum = expenses.map((e) => e.amount).reduce((a, b) => a + b);
       emit(
         ExpensesState(
+          // sum: sum,
           status: Status.success,
           expenses: results,
         ),
@@ -39,9 +45,26 @@ class ExpensesCubit extends Cubit<ExpensesState> {
     }
   }
 
+  // StreamSubscription? _streamSubscription;
+
+  // Future<void> start() async {
+  //   _streamSubscription =
+  //       _categoryRepository.getExpensesStream(categoryId: '').listen(
+  //     (expenses) {
+  //       final sum = expenses.map((e) => e.amount).reduce((a, b) => a + b);
+  //       emit(ExpensesState(expenses: expenses, sum: sum));
+  //     },
+  //   )..onError(
+  //           (error) {
+  //             emit(const ExpensesState(loadingErrorOccured: true));
+  //           },
+  //         );
+  // }
+
   Future<void> remove({
     required String documentID,
     String? categoryId,
+    // int? sum,
   }) async {
     try {
       await _categoryRepository.deleteExpenses(id: documentID);
@@ -49,7 +72,16 @@ class ExpensesCubit extends Cubit<ExpensesState> {
       emit(
         const ExpensesState(removingErrorOccured: true),
       );
-      getExpenses(categoryId!);
+      getExpenses(
+        categoryId!,
+        // sum!,
+      );
     }
   }
+
+  // @override
+  // Future<void> close() {
+  //   _streamSubscription?.cancel();
+  //   return super.close();
+  // }
 }

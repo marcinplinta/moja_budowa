@@ -29,7 +29,10 @@ class CategoryPageCubit extends Cubit<CategoryPageState> {
     }
   }
 
-  Future<void> getCategoryWithID(String id) async {
+  Future<void> getCategoryWithID(
+    String id,
+    // int sum,
+  ) async {
     emit(
       const CategoryPageState(
         status: Status.loading,
@@ -38,6 +41,7 @@ class CategoryPageCubit extends Cubit<CategoryPageState> {
     );
     try {
       final categoryModel = await _categoryRepository.getCategory(id: id);
+      // final sum = expenses.map((e) => e.amount).reduce((a, b) => a + b);
       emit(CategoryPageState(
           status: Status.success, categoryModel: categoryModel));
     } catch (error) {

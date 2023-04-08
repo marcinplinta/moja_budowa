@@ -52,8 +52,10 @@ class _AddExpensesState extends State<AddExpensesPage> {
             return Scaffold(
               backgroundColor: const Color.fromARGB(235, 213, 228, 241),
               appBar: AppBar(
-                title: Text(
-                  widget.categoryModel!.title,
+                title: Expanded(
+                  child: Text(
+                    widget.categoryModel!.title,
+                  ),
                 ),
                 actions: [
                   IconButton(

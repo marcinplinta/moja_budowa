@@ -25,6 +25,16 @@ class CategoryRepository {
     return categoryRemoteDataSources.getExpenses(categoryId: categoryId);
   }
 
+  // Stream<List<ExpensesModel>> getExpensesStream({
+  //   required String categoryId,
+  // }) {
+  //   final userID = FirebaseAuth.instance.currentUser?.uid;
+  //   if (userID == null) {
+  //     throw Exception('User is not logged in');
+  //   }
+  //   return categoryRemoteDataSources.getExpensesStream(categoryId: categoryId);
+  // }
+
   Future<void> deleteExpenses({required String id}) async {
     final userID = FirebaseAuth.instance.currentUser?.uid;
     if (userID == null) {
@@ -37,7 +47,7 @@ class CategoryRepository {
     String title,
     DateTime date,
     int amount,
-     String categoryId,
+    String categoryId,
   ) async {
     final userID = FirebaseAuth.instance.currentUser?.uid;
     if (userID == null) {
@@ -47,7 +57,7 @@ class CategoryRepository {
       title,
       date,
       amount,
-       categoryId,
+      categoryId,
     );
   }
 

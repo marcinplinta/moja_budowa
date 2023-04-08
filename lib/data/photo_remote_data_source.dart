@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:image_picker/image_picker.dart';
-
+import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:moja_budowa/models/photo_note_model.dart';
 import 'package:path/path.dart' as path;
 import 'dart:io';
@@ -50,24 +50,28 @@ class PhotoRemoteDataSources {
         .add({'photo': url});
   }
 
-  Future<void> deletePhoto({
-    required String id,
-    // required String photo,
+  Future<void> deletePhotoStorage({
+    required String photo,
   }) async {
     final userID = FirebaseAuth.instance.currentUser?.uid;
     if (userID == null) {
       throw Exception('User is not logged in');
     }
-    // final photoRef = FirebaseStorage.instance.ref().storage.refFromURL(
-    //       photo
-    //     );
-    // await photoRef.delete();
+    firebase_storage.Reference photoRef = firebase_storage
+        .FirebaseStorage.instance
+        .ref()
+        .storage
+        .refFromURL(photo);
+    await photoRef.delete();
+  }
 
-    // final FirebaseStorage storage = FirebaseStorage.instance;
-
-    // final Reference fileRef = storage.ref().child('path/to/file.jpg');
-
-    // fileRef.delete();
+  Future<void> deletePhoto({
+    required String id,
+  }) async {
+    final userID = FirebaseAuth.instance.currentUser?.uid;
+    if (userID == null) {
+      throw Exception('User is not logged in');
+    }
 
     return FirebaseFirestore.instance
         .collection('users')
@@ -94,3 +98,22 @@ class PhotoRemoteDataSources {
     );
   }
 }
+
+// Stream<List<Map<String, dynamic>>> getPhotosStream() {
+//     final userID = FirebaseAuth.instance.currentUser?.uid;
+//     if (userID == null) {
+//       throw Exception('User is not logged in');
+//     }
+//     return FirebaseFirestore.instance
+//         .collection('users')
+//         .doc(userID)
+//         .collection('photo_note')
+//         .snapshots()
+//         .map((querySnapshot) {
+//       return querySnapshot.docs.map((doc) {
+//         final json = doc.data();
+//         json['id'] = doc.id;
+//         return json;
+//       }).toList();
+//     });
+//   }

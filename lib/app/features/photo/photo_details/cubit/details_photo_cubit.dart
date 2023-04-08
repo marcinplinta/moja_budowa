@@ -28,6 +28,21 @@ class DetailsPhotoCubit extends Cubit<DetailsPhotoState> {
     }
   }
 
+  Future<void> removePhotoStorage({
+    required String photo,
+  }) async {
+    try {
+      await _photoRepository.deletePhotoStorage(photo: photo);
+    } catch (error) {
+      emit(
+        DetailsPhotoState(
+          status: Status.error,
+          errorMessage: error.toString(),
+        ),
+      );
+    }
+  }
+
   Future<void> remove({
     required String documentID,
     // required String photo,

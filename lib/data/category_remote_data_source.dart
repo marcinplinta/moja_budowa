@@ -8,7 +8,8 @@ class CategoryRemoteDataSources {
     final doc = await FirebaseFirestore.instance
         .collection('categories')
         .orderBy(
-          'title',
+          // 'title',
+          'titleId',
           // descending: true,
         )
         .get();
@@ -55,6 +56,34 @@ class CategoryRemoteDataSources {
       ));
     }).toList();
   }
+
+  // Stream<List<ExpensesModel>> getExpensesStream({
+  //   required String categoryId,
+  // }) {
+  //   final userID = FirebaseAuth.instance.currentUser?.uid;
+  //   if (userID == null) {
+  //     throw Exception('User is not logged in');
+  //   }
+  //   return FirebaseFirestore.instance
+  //       .collection('users')
+  //       .doc(userID)
+  //       .collection('costs')
+  //       .orderBy('date')
+  //       .snapshots()
+  //       .map((querySnapshot) {
+  //     return querySnapshot.docs.map(
+  //       (doc) {
+  //         return ExpensesModel(
+  //           id: doc.id,
+  //           title: doc['title'],
+  //           date: (doc['date'] as Timestamp).toDate(),
+  //           amount: int.parse(doc['amount'].toString()),
+  //           categoryId: doc['category_id'],
+  //         );
+  //       },
+  //     ).toList();
+  //   });
+  // }
 
   Future<void> deleteExpenses({required String id}) async {
     final userID = FirebaseAuth.instance.currentUser?.uid;

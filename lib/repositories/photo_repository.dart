@@ -21,6 +21,12 @@ class PhotoRepository {
     return photoRemoteDataSources.getPhotosStream();
   }
 
+  Future<void> deletePhotoStorage({
+    required String photo,
+  }) async {
+    return photoRemoteDataSources.deletePhotoStorage(photo: photo);
+  }
+
   Future<void> deletePhoto({
     required String id,
     // required String photo,
@@ -44,3 +50,10 @@ class PhotoRepository {
     return photoRemoteDataSources.getDetalisPhotoNote(id: id);
   }
 }
+
+//  Stream<List<PhotoNoteModel>> getPhotosStream() {
+//     final photos = photoRemoteDataSources.getPhotosStream();
+//     return photos.map((jsonList) {
+//       return jsonList.map((json) => PhotoNoteModel.fromJson(json)).toList();
+//     });
+//   }

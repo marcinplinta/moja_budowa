@@ -38,6 +38,8 @@ class _AddPhotoPageState extends State<AddPhotoPage> {
                 IconButton(
                     onPressed: () {
                       context.read<PhotoNoteCubit>().add(image!);
+                      // context.read<PhotoNoteCubit>();
+                      // Navigator.of(context).pop();
                     },
                     icon: const Icon(
                       Icons.check,
