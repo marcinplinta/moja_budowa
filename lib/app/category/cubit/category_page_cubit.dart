@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:moja_budowa/app/core/enums.dart';
 import 'package:moja_budowa/models/category_model.dart';
+import 'package:moja_budowa/models/expenses_model.dart';
 import 'package:moja_budowa/repositories/category_repository.dart';
 
 part 'category_page_state.dart';
@@ -20,7 +21,18 @@ class CategoryPageCubit extends Cubit<CategoryPageState> {
     );
     try {
       final categories = await _categoryRepository.getCategories();
-      emit(CategoryPageState(status: Status.success, categories: categories));
+      final expenses = await _categoryRepository.getExpensesAll();
+      final categoriesWithSum = categories.map(
+        (categoryModel) {
+          final expensesOfCategory = <ExpensesModel>[];
+          return CategoryWithSum(
+            categoryModel: categoryModel,
+            expenses: expensesOfCategory,
+          );
+        },
+      ).toList();
+      emit(CategoryPageState(
+          status: Status.success, categories: categoriesWithSum));
     } catch (error) {
       emit(CategoryPageState(
         status: Status.error,

@@ -56,7 +56,7 @@ class CategoryPageContent extends StatelessWidget {
               child: ListView(
                 children: [
                   for (final categoryModel in categoryModels) ...[
-                    CategoryWidget(categoryModel: categoryModel),
+                    CategoryWidget(categoryWithSum: categoryModel),
                   ]
                 ],
               ),

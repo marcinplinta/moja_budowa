@@ -1,21 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:moja_budowa/app/category/cubit/category_page_cubit.dart';
 import 'package:moja_budowa/app/expenses/expenses_page.dart';
 import 'package:moja_budowa/models/category_model.dart';
 
 class CategoryWidget extends StatelessWidget {
   const CategoryWidget({
-    required this.categoryModel,
+    required this.categoryWithSum,
     Key? key,
   }) : super(key: key);
-  final CategoryModel categoryModel;
+  final CategoryWithSum categoryWithSum;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
         Navigator.of(context).push(
-          MaterialPageRoute(builder: (_) => ExpensesPage(id: categoryModel.id)),
+          MaterialPageRoute(
+              builder: (_) =>
+                  ExpensesPage(id: categoryWithSum.categoryModel.id)),
         );
       },
       child: Row(
@@ -29,7 +32,7 @@ class CategoryWidget extends StatelessWidget {
                 children: [
                   Expanded(
                     child: Text(
-                      categoryModel.title,
+                      categoryWithSum.categoryModel.title,
                       style: GoogleFonts.lora(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,

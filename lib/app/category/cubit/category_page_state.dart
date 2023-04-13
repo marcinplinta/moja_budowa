@@ -1,7 +1,7 @@
 part of 'category_page_cubit.dart';
 
 class CategoryPageState {
-  final List<CategoryModel> categories;
+  final List<CategoryWithSum> categories;
   final String? errorMessage;
   final CategoryModel? categoryModel;
   final Status status;
@@ -12,4 +12,11 @@ class CategoryPageState {
     this.categoryModel,
     this.status = Status.initial,
   });
+}
+
+class CategoryWithSum {
+  final CategoryModel categoryModel;
+  final List<ExpensesModel> expenses;
+
+  CategoryWithSum({required this.categoryModel, required this.expenses});
 }

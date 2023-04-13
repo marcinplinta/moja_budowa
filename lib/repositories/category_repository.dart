@@ -25,6 +25,14 @@ class CategoryRepository {
     return categoryRemoteDataSources.getExpenses(categoryId: categoryId);
   }
 
+  Future<List<ExpensesModel>> getExpensesAll() async {
+    final userID = FirebaseAuth.instance.currentUser?.uid;
+    if (userID == null) {
+      throw Exception('User is not logged in');
+    }
+    return categoryRemoteDataSources.getExpensesAll();
+  }
+
   // Stream<List<ExpensesModel>> getExpensesStream({
   //   required String categoryId,
   // }) {

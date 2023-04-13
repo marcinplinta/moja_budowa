@@ -57,6 +57,29 @@ class CategoryRemoteDataSources {
     }).toList();
   }
 
+  Future<List<ExpensesModel>> getExpensesAll() async {
+    final userID = FirebaseAuth.instance.currentUser?.uid;
+    if (userID == null) {
+      throw Exception('User is not logged in');
+    }
+    final doc = await FirebaseFirestore.instance
+        .collection('users')
+        .doc(userID)
+        .collection('expenses')
+        // .orderBy('date')
+        .get();
+
+    return doc.docs.map((doc) {
+      return (ExpensesModel(
+        id: doc.id,
+        title: doc['title'],
+        date: (doc['date'] as Timestamp).toDate(),
+        amount: int.parse(doc['amount'].toString()),
+        categoryId: doc['category_id'],
+      ));
+    }).toList();
+  }
+
   // Stream<List<ExpensesModel>> getExpensesStream({
   //   required String categoryId,
   // }) {
