@@ -36,9 +36,8 @@ class CategoryPageContent extends StatelessWidget {
             );
           }
           if (state.status == Status.loading) {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
+            return const Scaffold(
+                body: Center(child: CircularProgressIndicator()));
           }
           if (state.status == Status.success) {
             if (state.categories.isEmpty) {
@@ -49,7 +48,7 @@ class CategoryPageContent extends StatelessWidget {
           return Scaffold(
             backgroundColor: const Color.fromARGB(235, 213, 228, 241),
             appBar: AppBar(
-              title: const Text('Koszty'),
+              title: const Text('Koszty budowy'),
             ),
             body: Padding(
               padding: const EdgeInsets.all(3),

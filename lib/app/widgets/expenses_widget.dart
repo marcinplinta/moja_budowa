@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:moja_budowa/app/category/cubit/category_page_cubit.dart';
 import 'package:moja_budowa/app/core/enums.dart';
 import 'package:moja_budowa/app/expenses/cubit/expenses_cubit.dart';
 
@@ -11,10 +13,12 @@ import 'package:moja_budowa/repositories/category_repository.dart';
 class ExpensesWidget extends StatelessWidget {
   const ExpensesWidget({
     required this.categoryId,
+    // required this.categoryWithSum,
     Key? key,
   }) : super(key: key);
 
   final String categoryId;
+  // final CategoryWithSum categoryWithSum;
 
   @override
   Widget build(BuildContext context) {
@@ -57,10 +61,12 @@ class ExpensesWidget extends StatelessWidget {
             children: [
               Center(
                 child: Text(
-                  'Koszt całkowity: $formattedSum zł',
-                  style: const TextStyle(
-                    fontSize: 24,
+                  'sada',
+                  // " suma ${categoryWithSum.sumOfExpenses.toString()} zł",
+                  style: GoogleFonts.lora(
+                    fontSize: 16,
                     fontWeight: FontWeight.bold,
+                    color: Colors.black,
                   ),
                 ),
               ),

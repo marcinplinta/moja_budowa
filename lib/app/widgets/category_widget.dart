@@ -14,8 +14,8 @@ class CategoryWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
-        Navigator.of(context).push(
+      onTap: () async {
+        await Navigator.of(context).push(
           MaterialPageRoute(
               builder: (_) =>
                   ExpensesPage(id: categoryWithSum.categoryModel.id)),
@@ -38,6 +38,14 @@ class CategoryWidget extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                         color: Colors.black,
                       ),
+                    ),
+                  ),
+                  Text(
+                    " suma ${categoryWithSum.sumOfExpenses.toString()} zł",
+                    style: GoogleFonts.lora(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
                     ),
                   ),
                   const Icon(

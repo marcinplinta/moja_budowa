@@ -13,18 +13,21 @@ class ExpensesPage extends StatelessWidget {
   const ExpensesPage({
     required this.id,
     this.categoryModel,
-    this.expensesmodel,
+    // required this.expensesmodel,
+    // required this.categoryWithSum,
     Key? key,
   }) : super(key: key);
   final CategoryModel? categoryModel;
   final String id;
-  final ExpensesModel? expensesmodel;
+  // final ExpensesModel expensesmodel;
+  // final CategoryWithSum categoryWithSum;
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) =>
           CategoryPageCubit(CategoryRepository(CategoryRemoteDataSources()))
             ..getCategoryWithID(id),
+      // (categoryWithSum.categoryModel.id),
       child: BlocConsumer<CategoryPageCubit, CategoryPageState>(
         listener: (context, state) {
           if (state.status == Status.error) {
@@ -64,6 +67,7 @@ class ExpensesPage extends StatelessWidget {
             ),
             body: ExpensesWidget(
               categoryId: categoryModel.id,
+              // categoryWithSum: categoryWithSum,
             ),
             floatingActionButton: FloatingActionButton(
               onPressed: () async {
