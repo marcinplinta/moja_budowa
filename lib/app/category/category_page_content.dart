@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 import 'package:moja_budowa/app/category/cubit/category_page_cubit.dart';
 import 'package:moja_budowa/app/core/enums.dart';
 import 'package:moja_budowa/app/widgets/category_widget.dart';
@@ -45,10 +46,27 @@ class CategoryPageContent extends StatelessWidget {
             }
           }
           final categoryModels = state.categories;
+          final formatter = NumberFormat("#,###.00", "pl_PL");
+          final formattedsumAllExpenses =
+              formatter.format(state.sumAllExpenses);
           return Scaffold(
             backgroundColor: const Color.fromARGB(235, 213, 228, 241),
             appBar: AppBar(
               title: const Text('Koszty budowy'),
+              bottom: PreferredSize(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    'Koszt całkowity: $formattedsumAllExpenses zł',
+                    style: const TextStyle(
+                      fontSize: 18.0,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+                preferredSize: const Size.fromHeight(30.0),
+              ),
             ),
             body: Padding(
               padding: const EdgeInsets.all(3),

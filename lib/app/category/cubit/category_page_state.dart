@@ -5,14 +5,14 @@ class CategoryPageState {
   final String? errorMessage;
   final CategoryModel? categoryModel;
   final Status status;
-  // final int sumAllExpenses;
+  final int sumAllExpenses;
 
   const CategoryPageState({
     this.categories = const [],
     this.errorMessage = '',
     this.categoryModel,
     this.status = Status.initial,
-    // required this.sumAllExpenses,
+    required this.sumAllExpenses,
   });
 }
 
