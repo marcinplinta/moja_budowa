@@ -54,6 +54,7 @@ class CategoryPageContent extends StatelessWidget {
             appBar: AppBar(
               title: const Text('Koszty budowy'),
               bottom: PreferredSize(
+                preferredSize: const Size.fromHeight(30.0),
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
@@ -65,7 +66,6 @@ class CategoryPageContent extends StatelessWidget {
                     ),
                   ),
                 ),
-                preferredSize: const Size.fromHeight(30.0),
               ),
             ),
             body: Padding(

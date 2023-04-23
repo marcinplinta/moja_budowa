@@ -17,8 +17,10 @@ class CategoryWidget extends StatelessWidget {
       onTap: () async {
         await Navigator.of(context).push(
           MaterialPageRoute(
-              builder: (_) =>
-                  ExpensesPage(id: categoryWithSum.categoryModel.id)),
+              builder: (_) => ExpensesPage(
+                    id: categoryWithSum.categoryModel.id,
+                    categoryWithSum: categoryWithSum,
+                  )),
         );
       },
       child: Row(

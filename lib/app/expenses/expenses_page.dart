@@ -14,13 +14,13 @@ class ExpensesPage extends StatelessWidget {
     required this.id,
     this.categoryModel,
     // required this.expensesmodel,
-    // required this.categoryWithSum,
+    required this.categoryWithSum,
     Key? key,
   }) : super(key: key);
   final CategoryModel? categoryModel;
   final String id;
   // final ExpensesModel expensesmodel;
-  // final CategoryWithSum categoryWithSum;
+  final CategoryWithSum categoryWithSum;
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -67,7 +67,7 @@ class ExpensesPage extends StatelessWidget {
             ),
             body: ExpensesWidget(
               categoryId: categoryModel.id,
-              // categoryWithSum: categoryWithSum,
+              categoryWithSum: categoryWithSum,
             ),
             floatingActionButton: FloatingActionButton(
               onPressed: () async {

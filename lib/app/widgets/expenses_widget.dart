@@ -13,12 +13,12 @@ import 'package:moja_budowa/repositories/category_repository.dart';
 class ExpensesWidget extends StatelessWidget {
   const ExpensesWidget({
     required this.categoryId,
-    // required this.categoryWithSum,
+    required this.categoryWithSum,
     Key? key,
   }) : super(key: key);
 
   final String categoryId;
-  // final CategoryWithSum categoryWithSum;
+  final CategoryWithSum categoryWithSum;
 
   @override
   Widget build(BuildContext context) {
@@ -56,13 +56,13 @@ class ExpensesWidget extends StatelessWidget {
           }
           final expensesModels = state.expenses;
           final formatter = NumberFormat("#,###.00", "pl_PL");
-          final formattedSum = formatter.format(state.sum);
+          final formatted = formatter.format(state.sum);
           return ListView(
             children: [
               Center(
                 child: Text(
-                  'sada',
-                  // " suma ${categoryWithSum.sumOfExpenses.toString()} zł",
+                  // 'sada',
+                  " suma ${categoryWithSum.sumOfExpenses.toString()} zł",
                   style: GoogleFonts.lora(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
