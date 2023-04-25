@@ -34,8 +34,7 @@ class CategoryPageCubit extends Cubit<CategoryPageState> {
 
       final categoriesWithSum = categories.map(
         (categoryModel) {
-          // final sumOfExpenses =
-          //     expenses.map((e) => e.amount).reduce((a, b) => a + b);
+          expenses.map((e) => e.amount).reduce((a, b) => a + b);
 
           final expensesOfCategory = expenses
               .where((expenses) => expenses.categoryId == categoryModel.id)

@@ -6,20 +6,17 @@ import 'package:moja_budowa/app/expenses/add_expenses/add_expenses_page.dart';
 import 'package:moja_budowa/app/widgets/expenses_widget.dart';
 import 'package:moja_budowa/data/category_remote_data_source.dart';
 import 'package:moja_budowa/models/category_model.dart';
-import 'package:moja_budowa/models/expenses_model.dart';
 import 'package:moja_budowa/repositories/category_repository.dart';
 
 class ExpensesPage extends StatelessWidget {
   const ExpensesPage({
     required this.id,
     this.categoryModel,
-    // required this.expensesmodel,
     required this.categoryWithSum,
     Key? key,
   }) : super(key: key);
   final CategoryModel? categoryModel;
   final String id;
-  // final ExpensesModel expensesmodel;
   final CategoryWithSum categoryWithSum;
   @override
   Widget build(BuildContext context) {
@@ -27,7 +24,6 @@ class ExpensesPage extends StatelessWidget {
       create: (context) =>
           CategoryPageCubit(CategoryRepository(CategoryRemoteDataSources()))
             ..getCategoryWithID(id),
-      // (categoryWithSum.categoryModel.id),
       child: BlocConsumer<CategoryPageCubit, CategoryPageState>(
         listener: (context, state) {
           if (state.status == Status.error) {
@@ -81,6 +77,8 @@ class ExpensesPage extends StatelessWidget {
                   ),
                 );
                 context.read<CategoryPageCubit>().getCategoryWithID(id);
+                // BlocProvider.of<CategoryPageCubit>(context)
+                //     .getCategoryWithID(id);
               },
               child: const Icon(Icons.edit),
             ),

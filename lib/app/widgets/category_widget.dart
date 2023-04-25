@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 import 'package:moja_budowa/app/category/cubit/category_page_cubit.dart';
 import 'package:moja_budowa/app/expenses/expenses_page.dart';
-import 'package:moja_budowa/models/category_model.dart';
 
 class CategoryWidget extends StatelessWidget {
   const CategoryWidget({
@@ -13,6 +13,7 @@ class CategoryWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final numberFormat = NumberFormat('#,###', 'pl_PL');
     return InkWell(
       onTap: () async {
         await Navigator.of(context).push(
@@ -43,7 +44,7 @@ class CategoryWidget extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    " suma ${categoryWithSum.sumOfExpenses.toString()} zł",
+                    " suma ${numberFormat.format(categoryWithSum.sumOfExpenses)} zł",
                     style: GoogleFonts.lora(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,

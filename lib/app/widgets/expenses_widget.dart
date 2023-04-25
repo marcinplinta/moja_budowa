@@ -55,16 +55,22 @@ class ExpensesWidget extends StatelessWidget {
             }
           }
           final expensesModels = state.expenses;
-          final formatter = NumberFormat("#,###.00", "pl_PL");
-          final formatted = formatter.format(state.sum);
+          final NumberFormat formatter = NumberFormat.currency(
+            decimalDigits: 2,
+            symbol: 'zł',
+            locale: 'pl_PL',
+          );
+          final int sum = categoryWithSum.sumOfExpenses;
+          final String formattedSum = formatter.format(sum);
+
           return ListView(
             children: [
               Center(
                 child: Text(
                   // 'sada',
-                  " suma ${categoryWithSum.sumOfExpenses.toString()} zł",
+                  'suma $formattedSum',
                   style: GoogleFonts.lora(
-                    fontSize: 16,
+                    fontSize: 28,
                     fontWeight: FontWeight.bold,
                     color: Colors.black,
                   ),
